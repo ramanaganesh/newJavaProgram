@@ -16,7 +16,8 @@ import org.json.simple.parser.ParseException;
 
 
 
-public class Customer {
+public class Customer 
+{
 
 	static JSONParser parser=new JSONParser();
 	 static String productName[];
@@ -32,43 +33,53 @@ public class Customer {
 			try {
 
 	            Object obj = parser.parse(new FileReader("/home/bridgelabz/stock.json"));
-	           // System.out.println(obj);
-	    
+	            
+	            // System.out.println(obj);
+	            JSONObject json=Inventory.convertJsonObject(obj);
+	            System.out.println("JSONObject="+json);
+	            
+	            
+	            
 	            JSONArray jsonArray=new JSONArray();
 	            jsonArray=(JSONArray) obj;
 	           
 	            Object object[]=new Object[jsonArray.size()];
-	           
-	            for (int j = 0; j < object.length; j++) {
-					object[j]=jsonArray.get(j);
-					
-				}
 	           
 	            JSONObject jsonObject[]=new JSONObject[jsonArray.size()];
 	            productName=new String[jsonArray.size()];
 	            name=new JSONObject[jsonArray.size()];
 	            finalStockReport=new JSONObject[jsonArray.size()];
 	          
-	            
 	            for (int j = 0; j < object.length; j++)
 	            {
+					object[j]=jsonArray.get(j);
+
 					jsonObject[j]=(JSONObject) object[j];
-					System.out.println(jsonObject[j]);
+					//System.out.println(jsonObject[j]);
 					name[j] = (JSONObject) jsonObject[j].get("Stock");
 					productName[j]=(String)name[j].get("StockName");
 					
 				}
+	           
+	            
+	          
 	   /*System.out.println(jsonObject2);
 	     JSONObject name = (JSONObject) jsonObject2.get("pepsi");
 	     System.out.println(name.get("NumberOfShare"));*/
 	          
-		}catch (FileNotFoundException e) {
+		}
+			catch (FileNotFoundException e) 
+			{
             e.printStackTrace();
-        } catch (IOException e) {
+			} 
+			catch (IOException e) 
+			{
             e.printStackTrace();
-        } catch (ParseException e) {
+			}
+			catch (ParseException e) 
+			{
             e.printStackTrace();
-        }
+			}
 			for(int i=0;i<noOfStocks;i++)
 			{
 				System.out.println("enter the stock name");
@@ -83,21 +94,22 @@ public class Customer {
 						  
 						  Long share=(Long)name[j].get("NumberOfShare");
 						
-						  while(noOfShare>share)
-						  {
-							  System.out.println("we having "+share+" share of "+productName[j]);
-							  System.out.println("now how many share u want from this product");
-							  noOfShare=scanner.nextLong();
-						  }
-						  long newShare=share-noOfShare;
-						  Long sharePrice=(Long)name[j].get("SharePrice");
-						  Long amount=(Long)name[j].get("TotalAmount");
-						  name[j].put("NumberOfShare",newShare);
+						  	while(noOfShare>share)
+						  	{
+						  		System.out.println("we having "+share+" share of "+productName[j]);
+							  	System.out.println("now how many share u want from this product");
+							  	noOfShare=scanner.nextLong();
+						  	}
+						  		long newShare=share-noOfShare;
+						  		Long sharePrice=(Long)name[j].get("SharePrice");
+						  		Long amount=(Long)name[j].get("TotalAmount");
+						  		name[j].put("NumberOfShare",newShare);
 						  
-						  sharePrice=noOfShare*sharePrice;
-						  amount=amount-sharePrice;
-						  name[j].put("TotalAmount",amount);
-					  }
+						  		sharePrice=noOfShare*sharePrice;
+						  		amount=amount-sharePrice;
+						  		name[j].put("TotalAmount",amount);
+					  } 
+					  
 				  }
 			}
 	        JSONArray obj2=new JSONArray();
