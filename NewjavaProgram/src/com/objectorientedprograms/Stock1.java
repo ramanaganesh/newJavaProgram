@@ -2,32 +2,39 @@ package com.objectorientedprograms;
 
 public class Stock1 {
 	private String stockName;
-	private String noOfShare;
-	private String sharePrice;
-	private String amount;
+	private long noOfShare;
+	private long sharePrice;
+	private long amount;
+	private String stockSymbol;
 	public String getStockName() {
 		return stockName;
 	}
 	public void setStockName(String stockName) {
 		this.stockName = stockName;
 	}
-	public String getNoOfShare() {
+	public long getNoOfShare() {
 		return noOfShare;
 	}
-	public void setNoOfShare(String noOfShare) {
+	public void setNoOfShare(long noOfShare) {
 		this.noOfShare = noOfShare;
 	}
-	public String getSharePrice() {
+	public long getSharePrice() {
 		return sharePrice;
 	}
-	public void setSharePrice(String sharePrice) {
+	public void setSharePrice(long sharePrice) {
 		this.sharePrice = sharePrice;
 	}
-	public String getAmount() {
+	public long getAmount() {
 		return amount;
 	}
-	public void setAmount(String amount) {
+	public void setAmount(long amount) {
 		this.amount = amount;
+	}
+	public String getStockSymbol() {
+		return stockSymbol;
+	}
+	public void setStockSymbol(String stockSymbol) {
+		this.stockSymbol = stockSymbol;
 	}
 	
 }

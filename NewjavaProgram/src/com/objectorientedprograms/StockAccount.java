@@ -23,7 +23,7 @@ public class StockAccount
 	 static JSONObject name[];
 	 static String companySymbol[];
 	 static JSONParser parser =new JSONParser();
-	public StockAccount(int count)
+	public StockAccount()
 	{	
 		CustomerForStock c=new CustomerForStock();
 		System.out.println("enter ur id");
@@ -35,17 +35,18 @@ public class StockAccount
 		ObjectMapper mapper=new ObjectMapper();
 		String json="[";
 		try {
-				if(count==0)
+			Object obj = parser.parse(new FileReader("/home/bridgelabz/customerdetails1.json"));
+			JSONArray array=new JSONArray();
+			array=(JSONArray) obj;
+				if(array.size()==0)
 				{
 		        		 json=json+mapper.writeValueAsString(c)+"]";
 				}
 				else
 				{
-					Object obj = parser.parse(new FileReader("/home/bridgelabz/customerdetails.json"));
-					JSONArray array=new JSONArray();
-					array=(JSONArray) obj;
 					
-					for (int i = 0; i < count; i++)
+					
+					for (int i = 0; i < array.size(); i++)
 					{
 						
 						if(i==0)
@@ -72,13 +73,12 @@ public class StockAccount
 
 					}*/
 				}}catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+						e1.printStackTrace();
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
-		 try (FileWriter file = new FileWriter("/home/bridgelabz/customerdetails.json")) {
+		 try (FileWriter file = new FileWriter("/home/bridgelabz/customerdetails1.json")) {
 
 	            file.write(json);
 	            System.out.println();
@@ -116,7 +116,8 @@ public class StockAccount
     	
     	return totalValue*0.013771; 
     }*/
-    static void buy(int amount,String symbol)
+    @SuppressWarnings("unchecked")
+	static void buy(int amount,String symbol)
     {
     	Object obj;
 		try {
@@ -146,7 +147,7 @@ public class StockAccount
 			} 
 		catch (IOException | ParseException e) 
 			{
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 		for (int j = 0; j < companySymbol.length; j++) 
@@ -171,22 +172,86 @@ public class StockAccount
 			 m.put(n,name[j]);
 			 
 		 }
-		 o.putAll(m);
+		o.putAll(m);
 		 obj2.add(o);
 		 System.out.println(obj2);
 		 FileWriter(obj2);
     }
 private static void FileWriter(JSONArray obj2)
 	{
-	 try (FileWriter file = new FileWriter("/home/bridgelabz/stockmaintain1.json")) {
+	 try (FileWriter file = new FileWriter("/home/bridgelabz/stockmaintain.json")) {
 
          file.write(obj2.toJSONString());
          System.out.println();
-         System.out.println("successfully added");
+        
          
 
      } catch (IOException e) {
          e.printStackTrace();
      }
 	}
-}
+	static void printCustomerDetail()
+	{
+		
+		
+		ObjectMapper mapper=new ObjectMapper();
+		try {
+
+			Object obj = parser.parse(new FileReader("/home/bridgelabz/customerdetails1.json"));
+			JSONArray array=new JSONArray();
+			array=(JSONArray) obj;
+			
+			
+			for (int i = 0; i < array.size(); i++)
+			{
+				CustomerForStock c1=mapper.readValue(array.get(i).toString(), CustomerForStock.class);
+				System.out.println(c1.getId()+" "+c1.getName()+" "+c1.getNum());
+			}
+			
+		} catch (IOException | ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	static void printStockReport()
+	{
+		ObjectMapper mapper=new ObjectMapper();
+		JSONObject name[];
+		Object o[];
+		try {
+
+			Object obj = parser.parse(new FileReader("/home/bridgelabz/stockmaintain1.json"));
+			System.out.println(obj);
+			JSONArray array=new JSONArray();
+			array=(JSONArray) obj;
+			
+			name=new JSONObject[array.size()];
+			o=new Object[array.size()];
+			JSONObject jsonObject[]=new JSONObject[array.size()];
+			int j=1;
+			for (int i = 0; i < array.size(); i++)
+			{
+				
+				o[i]=array.get(i);
+
+				jsonObject[i]=(JSONObject) o[i];
+				
+				//System.out.println(jsonObject[i]);
+				String cat="Stock"+j;
+				name[i] = (JSONObject) jsonObject[i].get(cat);
+				j++;
+				Stock1 s=new Stock1();
+				s.setAmount((long)name[i].get("TotalAmount"));
+				s.setNoOfShare((long)name[i].get("NumberOfShare"));
+				s.setSharePrice((long)name[i].get("SharePrice"));
+				s.setStockName((String)name[i].get("StockName"));
+				s.setStockSymbol((String)name[i].get("StockSymbol"));
+				System.out.println(s.getStockName()+" "+s.getNoOfShare()+" "+s.getSharePrice()+" "+s.getAmount()+" "+s.getStockSymbol());
+			}
+			
+		} catch (IOException | ParseException e) {
+		
+			e.printStackTrace();
+		}
+	}
+	}
