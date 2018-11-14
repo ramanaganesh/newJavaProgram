@@ -123,7 +123,10 @@ public class StockAccount
 		try {
 				obj = parser.parse(new FileReader("/home/bridgelabz/stockmaintain.json"));
 				JSONArray array=new JSONArray();
+				
 				array=(JSONArray) obj;
+				//System.out.println(array);
+				//System.out.println(array.size());
 				Object object[]=new Object[array.size()];
 	 	           
 	            JSONObject jsonObject[]=new JSONObject[array.size()];
@@ -138,7 +141,7 @@ public class StockAccount
 					jsonObject[j]=(JSONObject) object[j];
 				//	System.out.println(jsonObject[j]);
 					String n="Stock"+i;
-					System.out.println(n);
+					//System.out.println(n);
 					name[j] = (JSONObject) jsonObject[j].get(n);
 					i++;
 					companySymbol[j]=(String)name[j].get("StockSymbol");
@@ -170,19 +173,23 @@ public class StockAccount
 				String n="Stock"+i;
 				i++;
 			 m.put(n,name[j]);
-			 
+			 obj2.add(m);
+			 FileWriter(obj2);
 		 }
-		o.putAll(m);
-		 obj2.add(o);
-		 System.out.println(obj2);
-		 FileWriter(obj2);
+	//	o.putAll(m);
+		
+		// System.out.println(obj2);
+		 
     }
 private static void FileWriter(JSONArray obj2)
 	{
 	 try (FileWriter file = new FileWriter("/home/bridgelabz/stockmaintain.json")) {
-
-         file.write(obj2.toJSONString());
-         System.out.println();
+		
+		
+			 //System.out.println(obj2.toJSONString());
+			 file.write(obj2.toJSONString());
+		//	 System.out.println(obj2.size());
+       //  System.out.println();
         
          
 
@@ -220,11 +227,11 @@ private static void FileWriter(JSONArray obj2)
 		Object o[];
 		try {
 
-			Object obj = parser.parse(new FileReader("/home/bridgelabz/stockmaintain1.json"));
-			System.out.println(obj);
+			Object obj = parser.parse(new FileReader("/home/bridgelabz/stockmaintain.json"));
+			//System.out.println(obj);
 			JSONArray array=new JSONArray();
 			array=(JSONArray) obj;
-			
+			//System.out.println(array.size());
 			name=new JSONObject[array.size()];
 			o=new Object[array.size()];
 			JSONObject jsonObject[]=new JSONObject[array.size()];
