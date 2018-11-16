@@ -24,7 +24,7 @@ public class StockAccount
 	public StockAccount() 
 	{
 
-    	Object obj,obj1,obj2;
+    	Object obj,obj1,obj2,obje,obje1,obje2;
     	 JSONArray a=new JSONArray();
     	JSONObject object2=new JSONObject();
     	long value=0;
@@ -71,7 +71,9 @@ public class StockAccount
 	    			jsonObject1=(JSONObject) array1.get(j);
 	    			cId[j]=(long) jsonObject1.get("id");
 				}
-	    		System.out.println("the customers are:");
+	    		System.out.println("u want to \n1.buy \n2.sell");
+	    		int choice=scanner.nextInt();
+	    		/*System.out.println("the customers are:");
 	    		for (int j = 0; j < cId.length; j++) 
 	    		{
 	    			System.out.println(cId[j]);
@@ -84,28 +86,42 @@ public class StockAccount
 	    		System.out.println("enter the customer id"); 
 	    		Long customerId=scanner.nextLong();
 	    		System.out.println("enter the stock name");
-	    		String Stockname=scanner.next();
-	    		int temp=0,temp1=0;
-    			for (int j = 0; j < cId.length; j++) 
-    			{
-    				jsonObject1=(JSONObject) array1.get(j);
-    				if(customerId==(long) jsonObject1.get("id"))
-    							temp=j;
-				}
-    			for (int j = 0; j < name.length; j++) 
-    			{
-    				
-    				if(name[j].get("StockName").equals(Stockname))
-    						temp1=j;
-				}
-	    		System.out.println("u want to \n1.buy \n2.sell");
-	    		int choice=scanner.nextInt();
+	    		String Stockname=scanner.next();*/
+	    		
 	    		if(choice==1)
 	    		{
+	    			System.out.println("the customers are:");
+		    		for (int j = 0; j < cId.length; j++) 
+		    		{
+		    			System.out.println(cId[j]);
+					}
+		    		System.out.println("the stocks are");
+		    		for (int j = 0; j < name.length; j++) 
+		    		{
+		    			System.out.println(name[j].get("StockName"));
+					}
+		    		System.out.println("enter the customer id"); 
+		    		Long customerId=scanner.nextLong();
+		    		System.out.println("enter the stock name");
+		    		String Stockname=scanner.next();
 	    			System.out.println("enter the amount");
 	    			int amount=scanner.nextInt();
 	    			System.out.println("enter the stock symbol");
 	    			String symbol=scanner.next();
+	    			int temp=0,temp1=0;
+	    			for (int j = 0; j < cId.length; j++) 
+	    			{
+	    				jsonObject1=(JSONObject) array1.get(j);
+	    				if(customerId==(long) jsonObject1.get("id"))
+	    							temp=j;
+					}
+	    			for (int j = 0; j < name.length; j++) 
+	    			{
+	    				
+	    				if(name[j].get("StockName").equals(Stockname))
+	    						temp1=j;
+					}
+		    		
 	    			 while(amount>=(long)name[temp1].get("NumberOfShare"))
 	    			 {
 	    				 System.out.println("enter the valid amount");
@@ -146,8 +162,111 @@ public class StockAccount
 	    			}
 	    		else
 	    		{
-	    			System.out.println("selling to stock ");
+	    			/*System.out.println("selling to stock ");
+	    			obje = parser.parse(new FileReader("/home/bridgelabz/stock/stockinjson.json"));
+					obje1 = parser.parse(new FileReader("/home/bridgelabz/stock/customerdetail.json"));
+					
+					JSONArray ary1=new JSONArray();
+					JSONArray ary2=new JSONArray();
+					ary1=(JSONArray) obje1;
+					
+					JSONArray ary=new JSONArray();
+					obje2 = parser.parse(new FileReader("/home/bridgelabz/stock/customerproductdetail.json"));				
+					ary2=(JSONArray) obje2;
+					ary=(JSONArray) obje;
+					Object object1[]=new Object[array.size()];
+					
+
+		            JSONObject jsonObject11[]=new JSONObject[array.size()];
+		            JSONObject jsonObject12=new JSONObject();
+
+		            cId=new long[array1.size()];
+		            name=new JSONObject[array.size()];
+		            int k=1;
+		    		for (int j = 0; j < array.size() ; j++)
+		    		{
+		    	
+		    			object1[j]=array.get(j);
+		    			
+						jsonObject11[j]=(JSONObject) object[j];
+						
+				
+						String n="Stock"+k;
+						
+						name[j] = (JSONObject) jsonObject[j].get(n);
+						System.out.println(name[j]);
+						k++;
+						
+		    		}
+		    		System.out.println(array1.size());
+		    		for (int j = 0; j < array1.size(); j++) 
+		    		{
+		    			jsonObject1=(JSONObject) array1.get(j);
+		    			cId[j]=(long) jsonObject1.get("id");
+					}*/
 	    			
+		    		System.out.println("the customers are:");
+		    		for (int j = 0; j < cId.length; j++) 
+		    		{
+		    			System.out.println(cId[j]);
+					}
+		    		System.out.println("the stocks are");
+		    		for (int j = 0; j < name.length; j++) 
+		    		{
+		    			System.out.println(name[j].get("StockName"));
+					}
+		    		System.out.println("enter the customer id"); 
+		    		Long sellCustomerId=scanner.nextLong();
+		    		System.out.println("enter the stock name");
+		    		String sellStockName=scanner.next();
+		    		System.out.println("enter the amount");
+	    			int amount=scanner.nextInt();
+		    		int temp=0,temp1=0,temp2=0;
+	    			for (int j = 0; j < cId.length; j++) 
+	    			{
+	    				jsonObject1=(JSONObject) array1.get(j);
+	    				if(sellCustomerId==(long) jsonObject1.get("id"))
+	    							temp=j;
+					}
+	    			for (int j = 0; j < name.length; j++) 
+	    			{
+	    				
+	    				if(name[j].get("StockName").equals(sellStockName))
+	    						temp1=j;
+					}
+	    			long checkValue=0;
+	    			for (int j = 0; j < cId.length; j++)
+	    			{
+	    				
+	    				object2=(JSONObject) array2.get(j);
+	    				a=(JSONArray)object2.get("productShare");
+	    				//System.out.println(a.size());
+	    			System.out.println(temp+" "+temp1);
+	    				
+	    				for (int j2 = 0; j2 <name.length; j2++)
+	    				{
+							
+							if(j==temp && j2==temp1)
+	    						{
+									temp2=j2;
+									
+									checkValue=(long)a.get(temp2);
+									System.out.println(checkValue);
+									
+	    						}
+	    				}
+	    			}
+	    			System.out.println("hiHIHI"+a.get(temp2));
+	    			 while(checkValue<amount)
+	    			 {
+	    				 if((long)a.get(temp2)==0)
+	    				 {
+	    					 System.out.println("u didnt buy anything in the product");
+	    					 break;
+	    				 }
+	    				 System.out.println("enter the valid amount");
+	 	    			 amount=scanner.nextInt();
+	    			 }
 	    		}
 	    			
 	    		}
@@ -223,7 +342,7 @@ public class StockAccount
 				
 					String n="Stock"+i;
 					i++;
-				 m.put(n,name[j]);
+				 m.put(n   ,name[j]);
 				 obj2.add(m);
 				 FileWriterForStock(obj2);
 			 }
