@@ -21,12 +21,22 @@ public class CustomerInJson
 	Scanner scanner=new Scanner(System.in);
 	 static JSONParser parser =new JSONParser();
 
-	public CustomerInJson() {
+	public CustomerInJson()
+	{
 		// TODO Auto-generated constructor stub
 		CustomerDetail  c=new CustomerDetail();
 		CustomerProductDetail c1=new CustomerProductDetail();
 	System.out.println("enter ur id");
-	c.setId(scanner.nextInt());
+	int id=scanner.nextInt();
+	boolean b=validateCustomer(id);
+	while(!b)
+	{
+		
+		System.out.println("enter the new id");
+		id=scanner.nextInt();
+		b=validateCustomer(id);
+	}
+	c.setId(id);
 	System.out.println("enter ur name");
 	c.setName(scanner.next());
 	System.out.println("enter ur phone number");
@@ -103,6 +113,48 @@ public class CustomerInJson
         e.printStackTrace();
     }
 }
+	
+	private boolean validateCustomer(int id)
+	{
+		File file=new File("/home/bridgelabz/stock/customerdetail.json");
+		if(file.length()==0)
+		{
+			System.out.println("this is the first id");
+			return true;
+		}
+		else
+		{
+			Object ob;
+			int flag=0;
+			try {
+				ob = parser.parse(new FileReader("/home/bridgelabz/stock/customerdetail.json"));
+				JSONArray arra=new JSONArray();
+				JSONObject jsonObject=new JSONObject();
+				arra=(JSONArray) ob;
+			
+				for (int i = 0; i < arra.size(); i++)
+				{
+					jsonObject=(JSONObject) arra.get(i);
+				//	System.out.println(jsonObject.get("id"));
+					if((long)jsonObject.get("id")==id)
+					{
+						System.out.println("the Id is already there try again another number");
+						flag=1;
+						 break;
+					}
+					
+				}
+			} catch (IOException | ParseException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if(flag==1)
+				return false;
+			else
+				return true;
+		}
+	}
 	private String[] getStockName() 
 	{
 		String pName[]=new String[3];
