@@ -7,6 +7,8 @@
  *  @since   19-10-2018
  * ************************************************************/
 package com.functionalprogram;
+import com.utility.*;
+
 /* 
  * Here we use the scanner import  
  * to getting an input from the user
@@ -25,15 +27,15 @@ public class LeapYear {
 public static void main(String[] args) {
 	
 	//getting an input from the user with the help of scanner
-	Scanner s=new Scanner(System.in);
+	Scanner scanner=new Scanner(System.in);
 	System.out.println("enter the year");
-	int year=s.nextInt();
+	int year=scanner.nextInt();
 	/*
 	 * function call
 	 * to check the year is leap year or not
 	 * 
 	 */
-	Utility.isLeap(year);
-	s.close();
+	Utility.isLeapYear(year);
+	scanner.close();
 }
 }

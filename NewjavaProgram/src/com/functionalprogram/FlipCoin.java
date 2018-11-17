@@ -8,6 +8,7 @@
  * ************************************************************/
 
 package com.functionalprogram;
+import com.utility.*;
 
 /* 
  * Here we use the scanner import  
@@ -26,14 +27,14 @@ public static void main(String[] args) {
 	
 	//getting an input from the user with the help of scanner
 	System.out.println("enter how many times to flip");
-	Scanner s=new Scanner(System.in);
-	int time=s.nextInt();
+	Scanner scanner=new Scanner(System.in);
+	int time=scanner.nextInt();
 	/*
 	 * function call
 	 * to print the percentage of heads and tails
 	 * 
 	 */
 	Utility.flipCoin(time);
-	s.close();
+	scanner.close();
 }
 }

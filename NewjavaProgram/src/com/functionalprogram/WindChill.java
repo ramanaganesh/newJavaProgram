@@ -7,6 +7,8 @@
  *  @since   19-10-2018
  ************************************************************/
 package com.functionalprogram;
+import com.utility.*;
+
 /* 
  * Here we use the scanner import  
  * to getting an input from the user
@@ -24,19 +26,19 @@ public static void main(String[] args) {
 	/*
 	 * getting an input from the user with the help of scanner
 	 */
-	Scanner s=new Scanner(System.in);
+	Scanner scanner=new Scanner(System.in);
 	System.out.println("enter the temperature");
-	double temp=s.nextDouble();
+	double temperature=scanner.nextDouble();
 	System.out.println("enter the wind speed");
-	double v=s.nextDouble();
+	double speed=scanner.nextDouble();
 	
 	/*
 	 * function call
 	 * to print the wind chill
 	 *  
 	 */
-	Utility.findWindChill(temp, v);
-	s.close();
+	Utility.findWindChill(temperature, speed);
+	scanner.close();
 }
 
 }

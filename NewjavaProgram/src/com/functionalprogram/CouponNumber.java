@@ -7,6 +7,7 @@
  *  @since   23-10-2018
  ************************************************************/
 package com.functionalprogram;
+import com.utility.*;
 
 /* 
  * Here we use the scanner import  
@@ -33,17 +34,17 @@ public class CouponNumber {
 		 * 
 		 * 
 		 */
-		Scanner s=new Scanner(System.in);
+		Scanner scanner=new Scanner(System.in);
 		System.out.println("enter the limit for coupon number");
-		int lim=s.nextInt();
+		int limit=scanner.nextInt();
 	
 		/*
 		 * function call
 		 * to print generate thre coupon number is distinct or not
 		 *  
 		 */
-		Utility.couponNumber(lim);
-		s.close();
+		Utility.couponNumber(limit);
+		scanner.close();
 	}
 	
 

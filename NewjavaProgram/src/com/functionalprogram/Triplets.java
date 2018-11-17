@@ -9,6 +9,8 @@
  ************************************************************/
 
 package com.functionalprogram;
+import com.utility.*;
+
 /* 
  * Here we use the scanner import  
  * to getting an input from the user
@@ -25,11 +27,11 @@ public static void main(String[] args) {
 	/*
 	 * getting an input from the user with the help of scanner
 	 */
-	Scanner s=new Scanner(System.in);
+	Scanner scanner=new Scanner(System.in);
 	System.out.println("enter the limits for array");
-	int n=s.nextInt();
+	int limit=scanner.nextInt();
 	//declaring integer array to store the values
-	int a[]=new int[n];
+	int number[]=new int[limit];
 	/*
 	 * 
 	 * using for loop
@@ -38,17 +40,17 @@ public static void main(String[] args) {
 	 * i increment
 	 * 
 	 */
-	for(int i=0;i<n;i++)
+	for(int i=0;i<limit;i++)
 	{
 		//read the input from the user
-		a[i]=s.nextInt();
+		number[i]=scanner.nextInt();
 	}
 	/*
 	 * function call
 	 * to print the triplets
 	 *  
 	 */
-	Utility.triplets(a);
-	s.close();
+	Utility.triplets(number);
+	scanner.close();
 }
 }

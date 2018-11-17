@@ -1,7 +1,7 @@
 package com.algorithmprograms;
 
 import java.util.Scanner;
-
+import com.utility.*;
 public class SearchAndSort {
 public static void main(String[] args) {
 	/*
@@ -12,13 +12,13 @@ public static void main(String[] args) {
 	 */
 	long elapsedTime[]=new long[6];
 	int j=0;
-	int arr[]= {1,2,4,6,7,8,9,12};
-	String a[]= {"aman","banana","grape","guava","mango"};
+	int number[]= {1,2,4,6,7,8,9,12};
+	String word[]= {"aman","banana","grape","guava","mango"};
 	//inputs for the key
 	System.out.println("enter the key for integer and String");
 	Scanner s=new Scanner(System.in);
 	int key=s.nextInt();
-	String word=s.next();
+	String string=s.next();
 	/*
 	 * 
 	 * function call
@@ -27,14 +27,14 @@ public static void main(String[] args) {
 	 * 
 	 */
 	long start=System.nanoTime();
-	Binary.binarySearch(arr, key);
+	Utility.binarySearch(number, key);
 	long finish=System.nanoTime();
 	elapsedTime[j]=finish-start;
 	System.out.println(start+"--"+finish+"--"+elapsedTime[j]);
 	j++;
 	
 	start=System.nanoTime();
-	Binary.binarySearch(a, word);
+	Utility.binarySearch(word, string);
 	finish=System.nanoTime();
 	elapsedTime[j]=finish-start;
 	System.out.println(start+"--"+finish+"--"+elapsedTime[j]);
@@ -59,12 +59,12 @@ public static void main(String[] args) {
 	 * 
 	 * b[] to store the sorted array after function call
 	 */
-	int b[]=Insertion.sorting(arr);
+	int sort[]=Utility.sorting(number);
 	//to print the result for integer
 	System.out.print("[");
-	for(int i=0;i<b.length;i++)
+	for(int i=0;i<sort.length;i++)
 	{
-		System.out.print(b[i]+" ");
+		System.out.print(sort[i]+" ");
 	}
 	System.out.println("]");
 	
@@ -81,13 +81,13 @@ public static void main(String[] args) {
 	 * w[] to store the sorted array after function call
 	 */
 
-	String w[]=Insertion.sorting(a);
+	String sortedWord[]=Utility.sorting(word);
 	
 	//to print the result for String
 	System.out.print("[");
-	for(int i=0;i<w.length;i++)
+	for(int i=0;i<sortedWord.length;i++)
 	{
-		System.out.print(w[i]+" ");
+		System.out.print(sortedWord[i]+" ");
 	}
 	System.out.println("]");
 	finish=System.nanoTime();
@@ -108,12 +108,12 @@ public static void main(String[] args) {
 	 * 
 	 * b[] to store the sorted array after function call
 	 */
-	int b1[]=Bubble.sorting(arr);
+	int sortedNumber[]=Utility.sort(number);
 	//to print the result for integer
 	System.out.print("[");
-	for(int i=0;i<b.length;i++)
+	for(int i=0;i<sortedNumber.length;i++)
 	{
-		System.out.print(b1[i]+" ");
+		System.out.print(sortedNumber[i]+" ");
 	}
 	System.out.println("]");
 	
@@ -131,13 +131,13 @@ public static void main(String[] args) {
 	 * w[] to store the sorted array after function call
 	 */
 
-	String w1[]=Bubble.sorting(a);
+	String wordSorted[]=Utility.sort(word);
 	
 	//to print the result for String
 	System.out.print("[");
-	for(int i=0;i<w.length;i++)
+	for(int i=0;i<wordSorted.length;i++)
 	{
-		System.out.print(w1[i]+" ");
+		System.out.print(wordSorted[i]+" ");
 	}
 	System.out.println("]");
 	finish=System.nanoTime();

@@ -7,6 +7,8 @@
  *  @since   19-10-2018
  ************************************************************/
 package com.functionalprogram;
+import com.utility.*;
+
 /* 
  * Here we use the scanner import  
  * to getting an input from the user
@@ -17,16 +19,16 @@ import java.util.Scanner;
 public class Permutatation {
 public static void main(String[] args) {
 
-	Scanner s=new Scanner(System.in);
+	Scanner scanner=new Scanner(System.in);
 	System.out.println("enter the String");
-	String a=s.next();
+	String word=scanner.next();
 	/*
 	 * function call
 	 * to print the permutation
 	 *  
 	 */
-    Utility.permutation(a.toCharArray(),0);
-    s.close();
+    Utility.permutation(word.toCharArray(),0);
+    scanner.close();
 }
 
 

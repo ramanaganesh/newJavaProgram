@@ -8,6 +8,7 @@
  ************************************************************/
 
 package com.functionalprogram;
+import com.utility.*;
 
 /* 
  * Here we use the scanner import  
@@ -31,19 +32,19 @@ public static void main(String[] args) {
 
 
 	//getting an input from the user with the help of scanner
-	Scanner s=new Scanner(System.in);
+	Scanner scanner=new Scanner(System.in);
 	System.out.println("enter the stake amount");
-	int stake=s.nextInt();
+	int stake=scanner.nextInt();
 	System.out.println("enter the goal");
-	int goal=s.nextInt();
+	int goal=scanner.nextInt();
 	System.out.println("enter the trail");
-	int trial=s.nextInt();
+	int trial=scanner.nextInt();
 	/*
 	 * function call
 	 * to print the win and win percentage and average bets
 	 *  
 	 */
 	Utility.gambler(stake, goal, trial);
-	s.close();
+	scanner.close();
 }
 }

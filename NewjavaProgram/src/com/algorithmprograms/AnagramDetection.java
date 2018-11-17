@@ -7,7 +7,7 @@
  *  @since   19-10-2018
   *************************************************************/
 package com.algorithmprograms;
-
+import com.utility.*;
 /* 
  * Here we use the scanner import  
  * to getting an input from the user
@@ -19,20 +19,20 @@ import java.util.Scanner;
  * to find Anagram   Detection 
  * 
  */
-public class Main {
+public class AnagramDetection {
 public static void main(String[] args) {
 	//getting an input from the user with the help of scanner
-	Scanner s=new Scanner(System.in);
+	Scanner scanner=new Scanner(System.in);
 	System.out.println("enter the first string");
-	String st1=s.nextLine();
+	String firstString=scanner.nextLine();
 	System.out.println("enter the second string");
-	String st2=s.nextLine();
+	String secondString=scanner.nextLine();
 	/*
 	 * function call
 	 * to check the anagram or not
 	 * 
 	 */
-	Util.isAnagram(st1, st2);
-	s.close();
+	Utility.isAnagram(firstString, secondString);
+	scanner.close();
 }
 }

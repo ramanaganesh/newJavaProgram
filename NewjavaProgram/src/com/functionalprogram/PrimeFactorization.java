@@ -7,6 +7,7 @@
  *  @since   19-10-2018
  ************************************************************/
 package com.functionalprogram;
+import com.utility.*;
 
 
 /* 
@@ -27,15 +28,15 @@ public class PrimeFactorization {
 public static void main(String[] args) {
 	
 	//getting an input from the user with the help of scanner
-	Scanner s=new Scanner(System.in);
+	Scanner scanner=new Scanner(System.in);
 	System.out.println("enter the number");
-	long num=s.nextLong();
+	long number=scanner.nextLong();
 	/*
 	 * function call
 	 * to print the prime factorization
 	 * 
 	 */
-	Utility.factor(num);
-	s.close();
+	Utility.factor(number);
+	scanner.close();
 }
 }

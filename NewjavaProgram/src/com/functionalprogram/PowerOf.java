@@ -7,6 +7,8 @@
  *  @since   19-10-2018
   *************************************************************/
 package com.functionalprogram;
+import com.utility.*;
+
 
 /* 
  * Here we use the scanner import  
@@ -27,15 +29,15 @@ public class PowerOf {
 	
 public static void main(String[] args) {
 	//getting an input from the user with the help of scanner
-	Scanner s=new Scanner(System.in);
-	System.out.println("enter the N value");
-	int n=s.nextInt();
+	Scanner scanner=new Scanner(System.in);
+	System.out.println("enter the limit");
+	int limit=scanner.nextInt();
 	/*
 	 * function call
 	 * to print the power of 2
 	 * 
 	 */
-	Utility.power(n);
-    s.close();
+	Utility.power(limit);
+    scanner.close();
 }
 }

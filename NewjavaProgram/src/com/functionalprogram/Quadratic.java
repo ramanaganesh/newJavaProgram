@@ -9,6 +9,8 @@
  ************************************************************/
 
 package com.functionalprogram;
+import com.utility.*;
+
 /* 
  * Here we use the scanner import  
  * to getting an input from the user
@@ -28,17 +30,17 @@ public static void main(String[] args) {
 	/*
 	 * getting an input from the user with the help of scanner
 	 */
-	Scanner s=new Scanner(System.in);
+	Scanner scanner=new Scanner(System.in);
 	System.out.println("enter the a,b,c values");
-	int a=s.nextInt();
-	int b=s.nextInt();
-	int c=s.nextInt();
+	int a=scanner.nextInt();
+	int b=scanner.nextInt();
+	int c=scanner.nextInt();
 	/*
 	 * function call
 	 * to print the roots
 	 *  
 	 */
 	Utility.quadratic(a, b, c);
-	s.close();
+	scanner.close();
 }
 }

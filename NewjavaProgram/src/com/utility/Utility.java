@@ -1,8 +1,10 @@
-package com.functionalprogram;
+package com.utility;
 
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+
+
 
 public class Utility 
 {
@@ -46,7 +48,7 @@ public class Utility
 	 * @param year to check whether the year is leap year or not
 	 * 
 	 */
-	static void isLeap(int year)
+	public static void isLeapYear(int year)
 	{
 		Scanner s=new Scanner(System.in);
 		
@@ -150,7 +152,7 @@ public static void flipCoin(int times)
  * @param n is used to determine the power of 2
  * 
  */
-static void power(int n)
+public static void power(int n)
 {
 	/*
 	 * 
@@ -205,7 +207,7 @@ static void power(int n)
  * @param n is determine the series of harmonic value
  * 
  */
-public static void harmonic(int n)
+public static void harmonicSeries(int n)
 {
 	/*
 	 *if:check whether n is not equal to 0
@@ -241,7 +243,7 @@ public static void harmonic(int n)
 
 
 //**********************************************************************
-static void factor(long num)
+public static void factor(long num)
 {
 	Scanner s=new Scanner(System.in);
 	/*
@@ -291,7 +293,7 @@ s.close();
  * @param trial times
  * 
  */
-static void gambler(int stake,int goal,int trial)
+public static void gambler(int stake,int goal,int trial)
 {
 	/*
 	 * Initializing two variables 
@@ -358,14 +360,6 @@ static void gambler(int stake,int goal,int trial)
 
 
 
-//**********************************************************************
-
-//*********************************************************************
-
-	
-
-
-
 //**********************************************************************	
 /**
  * 
@@ -373,8 +367,9 @@ static void gambler(int stake,int goal,int trial)
  * @param col reperesent column
  * 
  */
-static void array2D(int row,int col)
+static public void array2D(int row,int col)
 {
+	System.out.println("hi");
 	Scanner s=new Scanner(System.in);
 
 	/*
@@ -432,7 +427,7 @@ static void array2D(int row,int col)
  * @param a its array to print triplets 
  * 
  */
-static void triplets(int a[])
+public static void triplets(int a[])
 {
 	/*
 	 * 
@@ -474,7 +469,7 @@ static void triplets(int a[])
 	}
 }
 //**********************************************************************	
-static void couponNumber(int lim)
+public static void couponNumber(int lim)
 {
 	ArrayList<Integer> arrayList=new ArrayList<>(lim);
 	Random o=new Random();
@@ -510,7 +505,7 @@ static void couponNumber(int lim)
  * @param x1 first point
  * @param y1 sec point
  */
-static void distance(int x1,int y1)
+public static void distance(int x1,int y1)
 {
 	//formula to find distance
 	int sq=(x1*x1)+(y1*y1);
@@ -578,7 +573,7 @@ c[j]=temp;
 
 
 //**********************************************************************
-static void play(char cell[][])
+public static void play(char cell[][])
 {
 	Scanner s=new Scanner(System.in);
 	Random r=new Random();
@@ -805,7 +800,7 @@ static void play(char cell[][])
  * @param b used as points
  * @param c used as points
  */
-static void quadratic(int a,int b,int c)
+public static void quadratic(int a,int b,int c)
 {
 	System.out.println("("+a+"x*x)+"+b+"x+"+c);
 	//mul is used for iteration
@@ -871,7 +866,7 @@ static void quadratic(int a,int b,int c)
 
 
 //**********************************************************************
-static void findWindChill(double temp,double v)
+public static void findWindChill(double temp,double v)
 {
 	/*
 	 * if:condtion satisfies means print the windmill speed
@@ -890,4 +885,689 @@ static void findWindChill(double temp,double v)
 }
 //**********************************************************************
 
+
+
+
+
+//**********************************************************************
+/**
+ * 
+ * @param string1 to store the string to check anagram
+ * @param string2 to store the string to check anagram
+ * @return no
+ */
+public static boolean isAnagram(String string1,String string2)
+{
+/*
+ * function call to check the two string anagram or not
+ * 
+ * 
+ */
+boolean flag=check(string1,string2);
+/*
+ * 
+ * if:true print ana=gram
+ * else: print not anagram
+ * 
+ */
+if(flag)
+	System.out.println("given String is anagram");
+else
+	System.out.println("given string is not anagram");
+return true;
 }
+
+/**
+* 
+* @param string2  taking input string from calling function
+* @param string1 taking input string from calling function
+* @return true or false
+*/
+private static boolean check(String string1,String string2)
+{
+/*
+ * 
+ * initializing two integer array
+ * to store the inputs for corresponding alphabet letter
+ * 
+ */
+	int count[]=new int[26];
+	int count1[]=new int[26];
+	
+	//its used to convert string into character array
+	char character[]=string2.toCharArray();
+	char character1[]=string1.toCharArray();
+	/*
+	 * using for loop 
+	 * initializing i=0
+	 * i iterate upto last letter(ch.length)
+	 *  
+	 */
+	
+	for (int i = 0; i < character.length; i++) 
+		{
+			if(character[i]>='a' && character[i]<='z')
+			{
+				//to store the inputs for corresponding alphabet letter
+				count[character[i]-97]++;
+				
+			}
+		}
+	/*
+	 * using for loop 
+	 * initializing i=0
+	 * i iterate upto last letter(ch.length)
+	 *  
+	 */
+	for (int i = 0; i < character1.length; i++) 
+	{
+		if(character1[i]>='a' && character1[i]<='z')
+		{
+			
+			//to store the inputs for corresponding alphabet letter
+			count1[character1[i]-97]++;
+		}
+	}
+	/*
+	 * using for loop 
+	 * initializing i=0
+	 * i iterate upto 26
+	 *  
+	 */
+     	for(int i=0;i<26;i++)
+     	{
+     		/*
+     		 * 
+     		 * if:check whether its same or not if its differ means its return false
+     		 */
+     		if(count[i]!=count1[i])
+     				return false;
+     		
+     	}
+     	return true;
+     	
+}
+//**********************************************************************
+
+
+
+
+//**********************************************************************
+/**
+ * 
+ * @param n denotes to print the number upto n
+ */
+static int value[]=new int[1000];
+public static int isPrime(int limit)
+{
+int count=0;
+System.out.println("the prime numbers between 1 to"+limit);
+/*
+ * using for loop 
+ * initializing i=1
+ * i iterate upto n
+ *  
+ */
+for (int i = 1; i <= limit; i++)         
+{ 	
+	//counter is used to print the prime number
+   int counter=0;	
+   /*
+	 * using for loop 
+	 * initializing num=i
+	 * num iterate upto 1
+	 *  
+	 */
+   for(int number =i; number>=1; number--)
+  {
+	   /*
+	    * if: to check the number is divisible by a 1 and num
+	    * 
+	    */
+      if(i%number==0)
+     {
+    	  //if its means it will add the counter by 1
+	counter = counter + 1;
+     }
+  }
+   /*
+    * if: counter=2 so the given num is prime
+    * 
+    */
+   if(counter==2)
+   {
+	   //print the result
+ System.out.println(i+" ");
+ /*
+	 * function call
+	 * to check prime number is palindrome or not
+	 * 
+	 */
+ 	  value[count]=i;
+	  isPalindrome(i);
+	  count++;
+   }
+  
+}
+return count;
+}
+/**
+* 
+* @param i stores the prime number 
+* check whether the prime number is palindrome or not
+*/
+static void isPalindrome(int i)
+{
+
+/*
+ * 
+ * if: the value between 0 to 9 is palindrome
+ * else the value more than 9
+ * 
+ */
+if(i>0 && i<=9)
+	System.out.println("the number "+i +" is palindrome");
+else
+{
+	//temp is used to i value because i value cannot be change
+	
+	int temp=i;
+	int newNumber=0;
+	/*
+	 * 
+	 * using while loop
+	 * to check upto temp!=0
+	 * 
+	 */
+	while(temp!=0)
+	{
+		/*
+		 * if:if the rem is 0 we will directly add rem
+		 * else : we will add rem and then nnum will be multiply by 10
+		 * 
+		 */
+		int remainder=temp%10;
+		if(temp/10==0)
+		{
+			newNumber=newNumber+remainder;
+			//System.out.println(nnum);
+		}	
+		else
+			{
+			newNumber=newNumber+remainder;
+			newNumber=newNumber*10;
+			}
+		
+	//	System.out.println(nnum);
+		//next iteration for while loop
+		 temp=temp/10;
+	}
+	
+	if(newNumber==i)
+	{
+		//print the result of palindrome
+		System.out.println("the number "+i +" is palindrome");
+	}
+}
+
+}
+public static void anagramDisplay(int count)
+{
+
+
+for(int i=0;i<count-2;i++)
+{
+	for(int j=i+1;j<count;j++)
+	{
+		if(value[i]!= 0 && value[j]!=0)
+		{
+			
+		 boolean flag=isAnagram(value[i], value[j]);
+		
+		if(flag==true)
+		{System.out.println(value[i]+" "+value[j]);
+			//System.out.print(val[i]+" "+val[j]);
+		}
+	
+		}
+		//System.out.println();
+}
+}
+}
+static boolean isAnagram(int string1,int string2)
+{
+boolean flag=check(string1,string2);
+
+return flag;
+}
+
+private static boolean check(int string1,int string2)
+{
+	int count[]=new int[10];
+	int count1[]=new int[10];
+
+	while(string1!=0)
+	{
+		int remainder=string1%10;
+		count[remainder]++;
+		string1=string1/10;
+	}
+	while(string2!=0)
+	{
+		int remainder=string2%10;
+		count1[remainder]++;
+		string2=string2/10;
+	}
+     	for(int i=0;i<10;i++)
+     	{
+     		if(count[i]!=count1[i])
+     				return false;
+     		
+     	}
+     	return true;
+     	
+}
+//**********************************************************************
+
+
+
+
+//**********************************************************************
+/**
+ * 
+ * @param a its an integer array
+ * @param key its a search key
+ * 
+ */
+
+static public void binarySearch(int number[],int key)
+{
+//System.out.println("Integer");
+
+int low=0,flag=0;
+int high=number.length-1;
+/*
+* 
+* using while loop
+* we have to iterate upto low <=high
+* 
+*/
+while(low<=high)
+{
+//for binary search we have to find mid value for current low and high
+int mid=(low+high)/2;
+/*
+ * 
+ * if: we have to check whether the key value is left side
+ * else if: we have to check whether the key value is right side
+ * else if: its in mid position we have to print the key
+ */
+System.out.println(low+" "+mid+" "+high);
+if(number[mid]>key)
+{
+	System.out.println(mid);
+	high=mid-1;
+	//System.out.println(low+" "+high);
+}
+else if(number[mid]<key)
+{
+	System.out.println(mid);
+	low=mid+1;
+}
+else if(number[mid]==key)
+{
+	System.out.println(low+" "+mid+" "+high);
+	//flag is used to check the key is found or not 
+	flag=1;
+	//print the result with position
+	System.out.println("the key is found "+key+ " in "+mid+" position");
+	break;
+}
+}
+if(flag==0)
+System.out.println("the key is not in the array");
+}
+
+static public void binarySearch(String word[],String key)
+{
+//System.out.println("String");
+int low=0;byte flag=0;
+int high=word.length-1;
+/*
+ * 
+ * using while loop
+ * we have to iterate upto low <=high
+ * 
+ */
+while(low<=high)
+{
+	//for binary search we have to find mid value for current low and high
+	int mid=(low+high)/2;
+	/*
+	 * 
+	 * if: we have to check whether the key value is left side
+	 * else if: we have to check whether the key value is right side
+	 * else if: its in mid position we have to print the key
+	 */
+	if(word[mid].compareTo(key)>0)
+	{
+		
+		high=mid-1;
+	}
+	else if(word[mid].compareTo(key)<0)
+	{
+		
+		low=mid+1;
+	}
+	else if(word[mid].compareTo(key)==0)
+	{
+		
+		//flag is used to check the key is found or not 
+		flag=1;
+		//print the result with position
+		System.out.println("the key is found "+key+ " in "+mid+" position");
+		break;
+	}
+	
+}
+System.out.println(flag);
+if(flag==0)
+	System.out.println("the key is not in the array");
+}
+static public void binarySearch1(int number[])
+{
+//System.out.println("Integer");
+Scanner scanner=new Scanner(System.in);	
+int low=0,flag=0;
+int high=number.length-1;
+String check="false";
+/*
+* 
+* using while loop
+* we have to iterate upto low <=high
+* 
+*/
+int choice=0;
+do
+{
+
+while(low<=high)
+{
+//for binary search we have to find mid value for current low and high
+int mid=(low+high)/2;
+if(check!="true")
+{
+	System.out.println("if ur guess number is "+number[mid]);
+	System.out.println("true or false");
+	check=scanner.next();
+	
+	if(check.equals("true"))
+	{
+		System.out.println("the key is found " +number[mid]);
+		flag=1;
+		break;
+	}
+}
+if(high!=mid && mid!=low && check.equals("false"))
+{
+System.out.println("ur guess number is \n1.less than "+number[mid]+" \n2.greater than "+number[mid]);
+ choice=scanner.nextInt();
+}
+/*
+ * 
+ * if: we have to check whether the key value is left side
+ * else if: we have to check whether the key value is right side
+ * else if: its in mid position we have to print the key
+ */
+System.out.println(low+" "+mid+" "+high);
+if(choice==1 && high!=mid && mid!=low && check!="true")
+{
+
+	high=mid-1;
+	
+	
+}
+else if(choice==2 && high!=mid && mid!=low && check!="true")
+{
+
+	
+	low=mid+1;
+	
+}
+
+else if(low==high)
+{
+	//flag is used to check the key is found or not 
+	flag=1;
+	//print the result with position
+	System.out.println("the key is found " +number[low]);
+	check="true";
+	break;
+}
+}
+
+}while(check=="false");
+if(flag==0)
+System.out.println("the key is not in the array");
+scanner.close();
+}
+
+/**
+ * 
+ * @param arr its an integer array
+ * @return sorted array
+ */
+static public int[] sorting(int number[])
+{
+//System.out.println("Integer");
+/*
+ * using for loop 
+ * initializing i=1
+ * i iterate upto arr.length
+ *  
+ */
+
+for(int i=1;i<number.length;i++)
+{
+	int key=number[i];
+	int j=i-1;
+	/*
+	 * 
+	 * using while loop
+	 * we have to check j upto 0
+	 * 
+	 * 
+	 */
+	while(j>=0 && number[j]>key)
+	{
+		//if the key value is less than arr[j] means store the value in arr[j+1]j
+		number[j+1]=number[j];
+		j=j-1;
+	}
+	number[j+1]=key;
+}
+return number;
+}
+/**
+* 
+* @param arr its an string array
+* @return sorted array
+*/
+static public String[] sorting(String word[])
+{
+//System.out.println("String");
+/*
+ * using for loop 
+ * initializing i=1
+ * i iterate upto arr.length
+ *  
+ */
+
+for(int i=1;i<word.length;i++)
+{
+	String key=word[i];
+	int j=i-1;
+	/*
+	 * 
+	 * using while loop
+	 * we have to check j upto 0
+	 * 
+	 */
+	while(j>=0 && word[j].compareTo(key)>0)
+	{
+		//if the key value is less than arr[j] means store the value in arr[j+1]j
+		word[j+1]=word[j];
+		j=j-1;
+	}
+	word[j+1]=key;
+}
+return word;
+}
+
+/**
+ * 
+ * @param arr its an integer array
+ * @return sorted array
+ */
+static public int[] sort(int number[])
+{
+//System.out.println("Integer");
+/*
+ * using for loop 
+ * initializing i=0
+ * i iterate upto arr.length-1
+ *  
+ */
+for(int i=0;i<number.length-1;i++)
+{
+	/*
+	 * using inner for loop 
+	 * initializing j=0
+	 * j iterate upto arr.length
+	 *  
+	 */
+	for(int j=i;j<number.length;j++)
+	{
+		/*
+		 * 
+		 * if:the next value is greater than swap the values
+		 * 
+		 */
+		if(number[j]<number[i])
+		{
+			int temp=number[i];
+			number[i]=number[j];
+			number[j]=temp;
+		}
+	}
+}
+return number;
+}
+/**
+* 
+* @param arr its an String array
+* @return sorted array
+*/
+
+static public String[] sort(String word[])
+{//System.out.println("string");
+/*
+ * using for loop 
+ * initializing i=0
+ * i iterate upto arr.length-1
+ *  
+ */
+for(int i=0;i<word.length-1;i++)
+{
+	/*
+	 * using inner for loop 
+	 * initializing j=0
+	 * j iterate upto arr.length
+	 *  
+	 */
+	for(int j=i;j<word.length;j++)
+	{
+		/*
+		 * 
+		 * if:the next value is greater than swap the values
+		 * 
+		 */
+		if(word[j].compareTo(word[i])<0)
+		{
+			String temp=word[i];
+			word[i]=word[j];
+			word[j]=temp;
+		}
+	}
+}
+return word;
+}
+//**********************************************************************
+
+
+
+//**********************************************************************
+/**
+ *  find funtion to check whether the number is or not using binary search 
+ * 
+ */
+	static boolean check=false;	
+static public void find()
+{
+//getting an input from the user with the help of scanner
+Scanner scanner=new Scanner(System.in);
+System.out.println("enter the number");
+int limit=scanner.nextInt();
+/*
+ * 
+ * using while loop
+ * to check the given  number is power of 2 or not 
+ * its not means again user enter another number
+ * check() is function call to check the number
+ * 
+ */
+while(check(limit)!=false)
+{
+	System.out.println("enter the number");
+	limit=scanner.nextInt();
+	
+}
+/*
+ * array declaration
+ * to store upto n-1
+ * 
+ */
+int number[]=new int[limit];
+/*
+ * 
+ * using for loop
+ * initializing i=0;
+ * i iterate upto n-1
+ * 
+ */
+for (int i = 0; i < number.length; i++) {
+			number[i]=i;
+}
+		System.out.println("think your guess number");
+		binarySearch1(number);
+		scanner.close();
+
+}
+private static boolean check(int number) {
+	int multiply=1;
+for (int i = 0; i < 1000; i++) {
+	multiply=multiply*2;
+	if(multiply==number)
+		return false;
+
+}
+return true;
+}
+//**********************************************************************
+
+
+
+//**********************************************************************
+
+}
+

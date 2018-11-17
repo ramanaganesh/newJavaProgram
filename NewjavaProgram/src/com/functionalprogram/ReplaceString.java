@@ -8,6 +8,8 @@
  *  @since   19-10-2018
  * ************************************************************/
 package com.functionalprogram;
+import com.utility.*;
+
 /* 
  * Here we use the scanner import  
  * to getting an input from the user
@@ -21,19 +23,19 @@ public class ReplaceString {
 	 */
 public static void main(String[] args) {
 	
-	Scanner s=new Scanner(System.in);
+	Scanner scanner=new Scanner(System.in);
 	
 	//getting an input string from the user with the help of scanner
 	System.out.println("the input string is");
-	String sentence=s.nextLine();
-	String string[]=sentence.split(" ");
+	String sentence=scanner.nextLine();
+	String word[]=sentence.split(" ");
 	
 	/*
 	 * function call
 	 * to print the sentence
 	 * 
 	 */
-	Utility.replaceString(string);
-	s.close();
+	Utility.replaceString(word);
+	scanner.close();
 }
 }

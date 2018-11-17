@@ -13,6 +13,8 @@ package com.algorithmprograms;/*
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.utility.Utility;
+
 public class BubbleList {
 	/*
 	 * This is main function
@@ -22,35 +24,35 @@ public class BubbleList {
 
 	public static void main(String[] args) {
 		//arraylist its contains list to store list of words
-		ArrayList<Integer> l=new ArrayList<>();
-		Scanner s=new Scanner(System.in);
+		ArrayList<Integer> arrayList=new ArrayList<>();
+		Scanner scanner=new Scanner(System.in);
 		System.out.println("enter the limit");
-		int n=s.nextInt();
-		int arr[]=new int[n];
+		int limit=scanner.nextInt();
+		int number[]=new int[limit];
 		/*
 		 * using for loop 
 		 * initializing i=0
 		 * i iterate upto n
 		 *  
 		 */
-		for(int i=0;i<n;i++)
+		for(int i=0;i<limit;i++)
 		{
 			//enter the string to add in list
 			System.out.println("enter the number");
-			int a=s.nextInt();
-			l.add(a);
+			int inputNumber=scanner.nextInt();
+			arrayList.add(inputNumber);
 		}
-		System.out.println(l);
+		System.out.println(arrayList);
 		/*
 		 * using for loop 
 		 * initializing i=0
 		 * i iterate upto n
 		 *  
 		 */
-		for(int i=0;i<n;i++)
+		for(int i=0;i<limit;i++)
 		{
 			//to get an words and stored in array
-			arr[i]=l.get(i);
+			number[i]=arrayList.get(i);
 			
 		}
 		System.out.println("Integer array");
@@ -60,12 +62,12 @@ public class BubbleList {
 		 * i iterate upto n
 		 *  
 		 */
-		for(int i=0;i<n;i++)
+		for(int i=0;i<limit;i++)
 		{
 			//before sorted
-			System.out.println(arr[i]);
+			System.out.println(number[i]);
 		}
-		int a[]=Bubble.sorting(arr);
+		int finalSort[]=Utility.sorting(number);
 		System.out.println("after Bubble sort");
 		/*
 		 * using for loop 
@@ -73,12 +75,12 @@ public class BubbleList {
 		 * i iterate upto n
 		 *  
 		 */
-		for(int i=0;i<n;i++)
+		for(int i=0;i<limit;i++)
 		{
 			//after sorted
-			System.out.println(a[i]);
+			System.out.println(finalSort[i]);
 		}
-		s.close();
+		scanner.close();
 	}
 
 }

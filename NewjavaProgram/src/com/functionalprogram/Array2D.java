@@ -9,6 +9,7 @@
  ************************************************************/
 
 package com.functionalprogram;
+import com.utility.*;
 /* 
  * Here we use the scanner import  
  * to getting an input from the user
@@ -23,7 +24,7 @@ public class Array2D {
 	 * 
 	 */
 public static void main(String[] args) {
-	Scanner s=new Scanner(System.in);
+	Scanner scanner=new Scanner(System.in);
 	/*
 	 * 
 	 * row variable for 1-D value
@@ -31,13 +32,13 @@ public static void main(String[] args) {
 	 * 
 	 */
 	System.out.println("enter the row and column ");
-	int row=s.nextInt(),col=s.nextInt();
+	int row=scanner.nextInt(),column=scanner.nextInt();
 	/*
 	 * function call
 	 * to print the array in 2D
 	 *  
 	 */
-	Utility.array2D(row, col);
-	s.close();
+	Utility.array2D(row, column);
+	scanner.close();
 }
 }

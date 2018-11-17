@@ -8,13 +8,14 @@
  ************************************************************/
 package com.functionalprogram;
 
+
 public class StopWatch {
 
 	//declaring variable for calculate the elapsed time
 	long startTime=0;
 	long stopTime=0;
 	String run=null;
-	long elapsed=0;
+	long elapsedTime=0;
 	/**
 	 * this method is used to start the stopwatch
 	 */
@@ -50,13 +51,13 @@ public class StopWatch {
 		 */
 		if(run=="true")
 		{
-			elapsed=System.nanoTime()-startTime;
-			System.out.println(elapsed);
+			elapsedTime=System.nanoTime()-startTime;
+			System.out.println(elapsedTime);
 		}
 		else
 		{
-			elapsed=stopTime-startTime;
-			System.out.println(elapsed);
+			elapsedTime=stopTime-startTime;
+			System.out.println(elapsedTime);
 		}
 	}
 }

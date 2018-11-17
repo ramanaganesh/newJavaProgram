@@ -81,7 +81,7 @@ public class StockDetail
 				s.setSharePrice((long)name[i].get("SharePrice"));
 				s.setStockName((String)name[i].get("StockName"));
 				s.setStockSymbol((String)name[i].get("StockSymbol"));
-				System.out.println(s.getStockName()+" "+s.getNoOfShare()+" "+s.getSharePrice()+" "+s.getAmount()+" "+s.getStockSymbol());
+				System.out.println("Stock Name="+s.getStockName()+" Number Of Share="+s.getNoOfShare()+" Share Price="+s.getSharePrice()+" Total Amount="+s.getAmount()+" Symbol="+s.getStockSymbol());
 			}
 			
 		} catch (IOException | ParseException e) {

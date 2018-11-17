@@ -221,19 +221,19 @@ public class CustomerInJson
 			{
 				System.out.println();
 				CustomerDetail c1=mapper.readValue(array.get(i).toString(), CustomerDetail.class);
-				System.out.print(c1.getId()+" "+c1.getName()+" "+c1.getNum());
+				System.out.print("Id="+c1.getId()+" Name="+c1.getName()+" Phone Number="+c1.getNum());
 				CustomerProductDetail c2=mapper.readValue(array1.get(i).toString(), CustomerProductDetail.class);
 					
 					String name[]=c2.getProductName();
 					int share[]=c2.getProductShare();
 				
-						System.out.print(" [");
+						System.out.print(" Product Share=[");
 						for (int j = 0; j < share.length; j++) 
 						{
 							System.out.print(share[j]+" ");
 						}
 							System.out.print("]");
-							System.out.print(" [");
+							System.out.print(" Product Name=[");
 							for (int j = 0; j < name.length; j++) 
 							{
 								

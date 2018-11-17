@@ -7,6 +7,9 @@
  *  @since   19-10-2018
   *************************************************************/
 package com.algorithmprograms;
+
+import com.utility.Utility;
+
 /* 
  * Here we use the scanner import  
  * to getting an input from the user
@@ -14,7 +17,7 @@ package com.algorithmprograms;
 
 
 
-public class FindNumber {
+public class FindingNumber {
 
 /*
  * This is main function
@@ -27,6 +30,6 @@ public static void main(String[] args) {
 	 * to check the number is found or not
 	 * 
 	 */
-	FindNum.find();
+	Utility.find();
 }
 }

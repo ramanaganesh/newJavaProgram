@@ -10,7 +10,7 @@ package com.functionalprogram;
 
 import java.util.Scanner;
 
-public class StWatch {
+public class StartAndStopWatch {
 	/*
 	 * This is main function
 	 * To print the elapsed time
@@ -18,7 +18,7 @@ public class StWatch {
 	 */
 public static void main(String[] args) {
 	//creating an object for StopWatch class
-	StopWatch s=new StopWatch();
+	StopWatch stopWatch=new StopWatch();
 	/*
 	 * start()-start the stopwatch
 	 * stop()-stop the stopwatch
@@ -28,16 +28,16 @@ public static void main(String[] args) {
 	Scanner scanner=new Scanner(System.in);
 	int choice=scanner.nextInt();
 	if(choice==1)
-    	s.start();
+    	stopWatch.start();
 	System.out.println(" enter 0 to stop the watch");
 	choice=scanner.nextInt();
 	if(choice==0)
 	{
-	  s.stop();
+	  stopWatch.stop();
 	
 	}
 	System.out.println("elapsed time between start and stop");
-	  s.elapsedTime();
+	  stopWatch.elapsedTime();
 	scanner.close();
 }
 }

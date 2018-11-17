@@ -8,6 +8,7 @@
  ************************************************************/
 
 package com.functionalprogram;
+import com.utility.*;
 
 /* 
  * Here we use the scanner import  
@@ -28,15 +29,15 @@ public class HarmonicNumber {
 	
 public static void main(String[] args) {
 	//getting an input from the user with the help of scanner
-	Scanner s=new Scanner(System.in);
+	Scanner scanner=new Scanner(System.in);
 	System.out.println("enter the number");
-	int n=s.nextInt();
+	int number=scanner.nextInt();
 	/*
 	 * function call
 	 * to print the harmonic series
 	 * 
 	 */
-	Utility.harmonic(n);
-	s.close();
+	Utility.harmonicSeries(number);
+	scanner.close();
 }
 }

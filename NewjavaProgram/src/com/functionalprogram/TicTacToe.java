@@ -8,6 +8,8 @@
  *  @since   19-10-2018
  ************************************************************/
 package com.functionalprogram;
+import com.utility.*;
+
 /* 
  * Here we use the scanner import  
  * to getting an input from the user
@@ -24,7 +26,7 @@ public class TicTacToe {
 	 */
 public static void main(String[] args) {
 	
-	Scanner s=new Scanner(System.in);
+	Scanner scanner=new Scanner(System.in);
 	
 	/*
 	 * 
@@ -59,7 +61,7 @@ public static void main(String[] args) {
 	 *  
 	 */
     Utility.play(cell);
-    s.close();
+    scanner.close();
 }
 
 }
