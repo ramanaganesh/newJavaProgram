@@ -17,6 +17,7 @@ import org.json.simple.parser.ParseException;
 public class StockAccount 
 {
 	Scanner scanner=new Scanner(System.in);
+	String symbol;
 	static JSONParser parser=new JSONParser();
 	static JSONObject name[];static long cId[];
 	 static String companySymbol[];
@@ -38,7 +39,7 @@ public class StockAccount
 				
 				JSONArray array=new JSONArray();
 				obj2 = parser.parse(new FileReader("/home/bridgelabz/stock/customerproductdetail.json"));				
-			array2=(JSONArray) obj2;
+				array2=(JSONArray) obj2;
 				array=(JSONArray) obj;
 				
 				Object object[]=new Object[array.size()];
@@ -232,16 +233,20 @@ public class StockAccount
 	    			{
 	    				
 	    				if(name[j].get("StockName").equals(sellStockName))
+	    				{
+	    						symbol=(String) name[j].get("StockSymbol");
+	    						System.out.println(symbol);
 	    						temp1=j;
+	    				}
 					}
 	    			long checkValue=0;
+	    			int count=0;
 	    			for (int j = 0; j < cId.length; j++)
 	    			{
 	    				
 	    				object2=(JSONObject) array2.get(j);
 	    				a=(JSONArray)object2.get("productShare");
 	    				//System.out.println(a.size());
-	    			System.out.println(temp+" "+temp1);
 	    				
 	    				for (int j2 = 0; j2 <name.length; j2++)
 	    				{
@@ -249,24 +254,59 @@ public class StockAccount
 							if(j==temp && j2==temp1)
 	    						{
 									temp2=j2;
-									
+					    			System.out.println(temp+" "+temp1);
+
 									checkValue=(long)a.get(temp2);
-									System.out.println(checkValue);
+									System.out.println(checkValue+" "+amount);
+									while(amount>checkValue)
+					    			 {
+					    				 if(checkValue==0)
+					    				 {
+					    					 System.out.println("u didnt buy anything in the product");
+					    					 break;
+					    				 }
+					    				
+					    				
+					    				 System.out.println("enter the valid amount");
+					 	    			 amount=scanner.nextInt();
+					 	    			/*while(amount>checkValue)
+						    			 {
+						    				 if(checkValue==0)
+						    				 {
+						    					 System.out.println("u didnt buy anything in the product");
+						    					 break;
+						    				 }
+						    				
+						    				
+						    				 System.out.println("enter the valid amount");
+						 	    			 amount=scanner.nextInt();
+						    				
+						    			 }*/
+					    			 }
+									    if(checkValue!=0)
+									    {
+										System.out.println("ur share is "+amount);
+										long nShare=checkValue-amount;
+										a.set(temp2, nShare);
+										//System.out.println(cId[temp]+" "+name[temp1].get("StockName")+" "+a.get(temp2));
+										//System.out.println(a);
+										sell(amount,symbol);
+									    }
 									
 	    						}
 	    				}
+	    				System.out.println(a);
+	    				JSONArray copy=new JSONArray();
+	    				copy.add(object2);
+	    				fileWriteForCustomerDetail(copy,count);
+	    				count++;
 	    			}
-	    			System.out.println("hiHIHI"+a.get(temp2));
-	    			 while(checkValue<amount)
-	    			 {
-	    				 if((long)a.get(temp2)==0)
-	    				 {
-	    					 System.out.println("u didnt buy anything in the product");
-	    					 break;
-	    				 }
-	    				 System.out.println("enter the valid amount");
-	 	    			 amount=scanner.nextInt();
-	    			 }
+	    		//	System.out.println(amount+" "+symbol);
+
+	   			 
+	    			/*System.out.println("temp2="+temp2);
+	    			System.out.println("hiHIHI"+a.get(temp2));*/
+	    			 
 	    		}
 	    			
 	    		}
@@ -277,7 +317,78 @@ public class StockAccount
 				e.printStackTrace();
 }
 	}	
-		 @SuppressWarnings({ "unused", "unchecked" })
+		 private void sell(int amount, String symbol2) 
+		 {
+			 Object obj;
+	    	 
+			//	JSONArray array2=new JSONArray();
+		    	   JSONArray array=new JSONArray();
+		    	  // long finalShare=0;
+		    	  
+				try {
+						obj = parser.parse(new FileReader("/home/bridgelabz/stock/stockinjson.json"));
+						
+						array=(JSONArray) obj;
+						
+						Object object[]=new Object[array.size()];
+			 	           
+			            JSONObject jsonObject[]=new JSONObject[array.size()];
+			         
+			            companySymbol=new String[array.size()];
+			            name=new JSONObject[array.size()];
+			            int i=1;
+			    		for (int j = 0; j < array.size(); j++)
+			    		{
+			    		
+			    			object[j]=array.get(j);
+			    			
+							jsonObject[j]=(JSONObject) object[j];
+						
+							String n="Stock"+i;
+						
+							name[j] = (JSONObject) jsonObject[j].get(n);
+							i++;
+							companySymbol[j]=(String)name[j].get("StockSymbol");
+			    		}
+			    		
+			    		
+					} 
+				catch (IOException | ParseException e) 
+				{
+						
+						e.printStackTrace();
+				}
+			 int temp=0;
+			 
+				for (int j = 0; j < companySymbol.length; j++) 
+				  {
+					  if(companySymbol[j].equals(symbol2))
+					  {
+						  temp=j;
+						  Long share=(Long)name[j].get("NumberOfShare");
+						  Long price=(Long)name[j].get("SharePrice");
+						  share=share+amount;
+						  
+						  name[j].put("NumberOfShare",share);
+						  name[j].put("TotalAmount",(share*price));
+					  }
+				  }
+				
+				JSONArray obj2=new JSONArray();
+		        JSONObject o=new JSONObject();
+		        Map<Object, Object> m=new HashMap<>();
+		       int  i=1;
+				 for (int j = 0; j < name.length; j++) {
+					
+						String n="Stock"+i;
+						i++;
+					 m.put(n   ,name[j]);
+					 obj2.add(m);
+					 FileWriterForStock(obj2);
+				 }
+		
+		 }
+		@SuppressWarnings({ "unused", "unchecked" })
 		long buy(int amount,String symbol)
 	    {
 	    	Object obj;
