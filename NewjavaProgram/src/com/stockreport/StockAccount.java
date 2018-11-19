@@ -1,9 +1,14 @@
 package com.stockreport;
 
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -21,11 +26,14 @@ public class StockAccount
 	static JSONParser parser=new JSONParser();
 	static JSONObject name[];static long cId[];
 	 static String companySymbol[];
+	 String customerName;
+ 	TransactionInJson transactionInJson=new TransactionInJson();
+ 	ObjectMapper mapper=new ObjectMapper();
 	@SuppressWarnings("unchecked")
 	public StockAccount() 
 	{
 
-    	Object obj,obj1,obj2,obje,obje1,obje2;
+    	Object obj,obj1,obj2;
     	 JSONArray a=new JSONArray();
     	JSONObject object2=new JSONObject();
     	long value=0;
@@ -66,7 +74,7 @@ public class StockAccount
 					i++;
 					
 	    		}
-	    		System.out.println(array1.size());
+	    		//System.out.println(array1.size());
 	    		for (int j = 0; j < array1.size(); j++) 
 	    		{
 	    			jsonObject1=(JSONObject) array1.get(j);
@@ -74,20 +82,6 @@ public class StockAccount
 				}
 	    		System.out.println("u want to \n1.buy \n2.sell");
 	    		int choice=scanner.nextInt();
-	    		/*System.out.println("the customers are:");
-	    		for (int j = 0; j < cId.length; j++) 
-	    		{
-	    			System.out.println(cId[j]);
-				}
-	    		System.out.println("the stocks are");
-	    		for (int j = 0; j < name.length; j++) 
-	    		{
-	    			System.out.println(name[j].get("StockName"));
-				}
-	    		System.out.println("enter the customer id"); 
-	    		Long customerId=scanner.nextLong();
-	    		System.out.println("enter the stock name");
-	    		String Stockname=scanner.next();*/
 	    		
 	    		if(choice==1)
 	    		{
@@ -104,32 +98,40 @@ public class StockAccount
 		    		System.out.println("enter the customer id"); 
 		    		Long customerId=scanner.nextLong();
 		    		System.out.println("enter the stock name");
-		    		String Stockname=scanner.next();
+		    		String stockName=scanner.next();
 	    			System.out.println("enter the amount");
 	    			int amount=scanner.nextInt();
 	    			System.out.println("enter the stock symbol");
 	    			String symbol=scanner.next();
+	    			transactionInJson.setId(customerId);
+	    			transactionInJson.setStockName(stockName);
 	    			int temp=0,temp1=0;
 	    			for (int j = 0; j < cId.length; j++) 
 	    			{
 	    				jsonObject1=(JSONObject) array1.get(j);
 	    				if(customerId==(long) jsonObject1.get("id"))
+	    				{
 	    							temp=j;
+	    							customerName=(String)jsonObject1.get("name");
+	    				}
 					}
+	    			transactionInJson.setCustomerName(customerName);
 	    			for (int j = 0; j < name.length; j++) 
 	    			{
 	    				
-	    				if(name[j].get("StockName").equals(Stockname))
+	    				if(name[j].get("StockName").equals(stockName))
 	    						temp1=j;
 					}
-		    		
+		    		transactionInJson.setStockName((String)name[temp1].get("StockName"));
 	    			 while(amount>=(long)name[temp1].get("NumberOfShare"))
 	    			 {
 	    				 System.out.println("enter the valid amount");
 	 	    			 amount=scanner.nextInt();
 	    			 }
+	    			 transactionInJson.setNumberOfShare(amount);
+	    			 
 	    			value=(long)buy(amount,symbol);
-	    			
+	    			transactionInJson.setMode("Buy");
 	    			array2=(JSONArray) obj2;
 	    			
 	    			int count=0;
@@ -158,54 +160,13 @@ public class StockAccount
 	    				copy.add(object2);
 	    				fileWriteForCustomerDetail(copy,count);
 	    				count++;
+	    				
 	    			}
-	    			
+	    			fileWriteForTransaction(transactionInJson);
 	    			}
 	    		else
 	    		{
-	    			/*System.out.println("selling to stock ");
-	    			obje = parser.parse(new FileReader("/home/bridgelabz/stock/stockinjson.json"));
-					obje1 = parser.parse(new FileReader("/home/bridgelabz/stock/customerdetail.json"));
-					
-					JSONArray ary1=new JSONArray();
-					JSONArray ary2=new JSONArray();
-					ary1=(JSONArray) obje1;
-					
-					JSONArray ary=new JSONArray();
-					obje2 = parser.parse(new FileReader("/home/bridgelabz/stock/customerproductdetail.json"));				
-					ary2=(JSONArray) obje2;
-					ary=(JSONArray) obje;
-					Object object1[]=new Object[array.size()];
-					
-
-		            JSONObject jsonObject11[]=new JSONObject[array.size()];
-		            JSONObject jsonObject12=new JSONObject();
-
-		            cId=new long[array1.size()];
-		            name=new JSONObject[array.size()];
-		            int k=1;
-		    		for (int j = 0; j < array.size() ; j++)
-		    		{
-		    	
-		    			object1[j]=array.get(j);
-		    			
-						jsonObject11[j]=(JSONObject) object[j];
-						
-				
-						String n="Stock"+k;
-						
-						name[j] = (JSONObject) jsonObject[j].get(n);
-						System.out.println(name[j]);
-						k++;
-						
-		    		}
-		    		System.out.println(array1.size());
-		    		for (int j = 0; j < array1.size(); j++) 
-		    		{
-		    			jsonObject1=(JSONObject) array1.get(j);
-		    			cId[j]=(long) jsonObject1.get("id");
-					}*/
-	    			
+	    			transactionInJson.setMode("sell");
 		    		System.out.println("the customers are:");
 		    		for (int j = 0; j < cId.length; j++) 
 		    		{
@@ -218,8 +179,10 @@ public class StockAccount
 					}
 		    		System.out.println("enter the customer id"); 
 		    		Long sellCustomerId=scanner.nextLong();
+		    		transactionInJson.setId(sellCustomerId);
 		    		System.out.println("enter the stock name");
 		    		String sellStockName=scanner.next();
+		    		transactionInJson.setStockName(sellStockName);
 		    		System.out.println("enter the amount");
 	    			int amount=scanner.nextInt();
 		    		int temp=0,temp1=0,temp2=0;
@@ -227,8 +190,12 @@ public class StockAccount
 	    			{
 	    				jsonObject1=(JSONObject) array1.get(j);
 	    				if(sellCustomerId==(long) jsonObject1.get("id"))
+	    				{
 	    							temp=j;
+	    							customerName=(String)jsonObject1.get("name");
+	    				}
 					}
+	    			transactionInJson.setCustomerName(customerName);
 	    			for (int j = 0; j < name.length; j++) 
 	    			{
 	    				
@@ -273,7 +240,7 @@ public class StockAccount
 					    			 }
 									    if(checkValue!=0)
 									    {
-										System.out.println("ur share is "+amount);
+                                        //system.out.println("ur share is "+amount);
 										long nShare=checkValue-amount;
 										a.set(temp2, nShare);
 										//System.out.println(cId[temp]+" "+name[temp1].get("StockName")+" "+a.get(temp2));
@@ -305,14 +272,49 @@ public class StockAccount
 				e.printStackTrace();
 }
 	}	
-		 private void sell(int amount, String symbol2) 
+		 private void fileWriteForTransaction(TransactionInJson transactionInJson) 
+		 {
+			 Object object;
+			 String json="[";
+			File file=new File("/home/bridgelabz/stock/transactioninjson.json");
+			
+				try {
+					if(file.length()==0)
+						json=json+mapper.writeValueAsString(transactionInJson)+"]";
+					else
+					{
+						object = parser.parse(new FileReader("/home/bridgelabz/stock/transactioninjson.json"));
+						JSONArray array=new JSONArray();
+						array=(JSONArray) object;
+						for (int i = 0; i < array.size(); i++)
+						{
+							//System.out.println(array.get(i));
+							json=json+array.get(i)+",";
+						//	System.out.println("inner Json"+json);
+						}
+						json=json+mapper.writeValueAsString(transactionInJson)+"]";
+
+					}
+					FileWriter fileWrite = new FileWriter("/home/bridgelabz/stock/transactioninjson.json");
+					//System.out.println("json="+json);
+					fileWrite.write(json);
+					fileWrite.flush();
+					
+				} catch (IOException | ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+		 }
+		@SuppressWarnings("unchecked")
+		private void sell(int amount, String symbol2) 
 		 {
 			 Object obj;
 	    	 
 			//	JSONArray array2=new JSONArray();
 		    	   JSONArray array=new JSONArray();
 		    	  // long finalShare=0;
-		    	  
+		    	transactionInJson.setNumberOfShare(amount);  
 				try {
 						obj = parser.parse(new FileReader("/home/bridgelabz/stock/stockinjson.json"));
 						
@@ -359,6 +361,10 @@ public class StockAccount
 						  
 						  name[j].put("NumberOfShare",share);
 						  name[j].put("TotalAmount",(share*price));
+						  transactionInJson.setTime(LocalTime.now());
+						  Date date=new Date();
+						  DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+						  transactionInJson.setDate(dateFormat.format(date));
 					  }
 				  }
 				
@@ -374,7 +380,7 @@ public class StockAccount
 					 obj2.add(m);
 					 FileWriterForStock(obj2);
 				 }
-		
+				 fileWriteForTransaction(transactionInJson);
 		 }
 		@SuppressWarnings({ "unused", "unchecked" })
 		long buy(int amount,String symbol)
@@ -430,6 +436,10 @@ public class StockAccount
 					  finalShare=amount;
 					  name[j].put("NumberOfShare",share);
 					  name[j].put("TotalAmount",(share*price));
+					  transactionInJson.setTime(LocalTime.now());
+					  Date date=new Date();
+					  DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+					  transactionInJson.setDate(dateFormat.format(date));
 				  }
 			  }
 			
@@ -505,90 +515,7 @@ public class StockAccount
 		
 		}
 		
-		/*	try 
-	 	{
-			System.out.println(object2);
-			File file1=new File("/home/bridgelabz/stock/customerproductdetail.json");	
-			//Object obj2 = parser.parse(new FileReader("/home/bridgelabz/stock/customerproductdetail.json"));
-			//System.out.println("file length"+file1.length());
-			long length=file1.length();
-			System.out.println(length);
-			//System.out.println(obj2);
-			
-	 		if(length!=0)
-	 		{
-	 			FileWriter file = new FileWriter("/home/bridgelabz/stock/customerproductdetail.json");
-	 			System.out.println("11111");
-	 			file.write(object2.toJSONString()); 
-	 			 file1=new File("/home/bridgelabz/stock/customerproductdetail.json");	
-	 			length=file1.length();
-				System.out.println(length);
-		 		file.flush();
-	 		}
-	 		else
-	 		{
-			try {
-			//	FileWriter file = new FileWriter("/home/bridgelabz/stock/customerproductdetail.json");
-				System.out.println("22222");
-				String json1="[";
-				ObjectMapper mapper=new ObjectMapper();
-				Object obj1 = parser.parse(new FileReader("/home/bridgelabz/stock/customerproductdetail.json"));
-				JSONArray array2=new JSONArray();
-				array2=(JSONArray) obj1;
-				for (int i = 0; i < array2.size(); i++)
-				{
-					
-					if(i==0)
-						json1=json1+array2.get(i)+",";
-					else
-						json1=json1+array2.get(i)+",";
-				}
-				json1=json1+mapper.writeValueAsString(object2.toString())+"]";
-				
-				FileWriter file = new FileWriter("/home/bridgelabz/stock/customerproductdetail.json");
-				file.write(json1);
-				JSONArray temp=object2;
-				String temp1="";
-				Object	obj = parser.parse(new FileReader("/home/bridgelabz/stock/stockinjson.json"));
-				JSONArray array=new JSONArray();
-				array=(JSONArray) obj;
-				for (int i = 0; i < array.size(); i++)
-				{
-					String json=(String) array.get(i);
-					System.out.println(json);
-					temp1=temp1+json;
-					file.wr
-				}
-				System.out.println("temp1="+temp1);
-				file.write(object2.toJSONString());
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 	
-	 		 
-	 		
-	 		
-	 		 
-	 	
-	 		}
-			catch (IOException e1) {
-				e1.printStackTrace();
-} catch (ParseException e) {
-	
-	e.printStackTrace();
-}
-	 	}
-		}
-			catch (IOException e ) 
-		 	{
-		 		e.printStackTrace();
-		 	}
-			 catch (ParseException e) {
-					
-					e.printStackTrace();
-				}
-		}*/
 	private static void FileWriterForStock(JSONArray obj2)
 		{
 		 	try (FileWriter file = new FileWriter("/home/bridgelabz/stock/stockinjson.json")) 

@@ -41,18 +41,17 @@ public class CustomerInJson
 	c.setName(scanner.next());
 	System.out.println("enter ur phone number");
 	c.setNum(scanner.next());
-	int product[]=new int[3];
-	String name[]=new String[3];
-	for (int i = 0; i < 3; i++)
+	
+	String name[];
+	name=getStockName();
+	c1.setProductName(name);
+	int product[]=new int[name.length];
+	for (int i = 0; i < product.length; i++)
 	{
 		product[i]=0;
 		
 	}
-	
 	c1.setProductShare(product);
-	
-	name=getStockName();
-	c1.setProductName(name);
 	ObjectMapper mapper=new ObjectMapper();
 	String json="[",json1="[";
 	
@@ -146,7 +145,7 @@ public class CustomerInJson
 				}
 			} catch (IOException | ParseException e)
 			{
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 			if(flag==1)
@@ -221,19 +220,19 @@ public class CustomerInJson
 			{
 				System.out.println();
 				CustomerDetail c1=mapper.readValue(array.get(i).toString(), CustomerDetail.class);
-				System.out.print(c1.getId()+" "+c1.getName()+" "+c1.getNum());
+				System.out.print("Id="+c1.getId()+" Name="+c1.getName()+" Phone Number="+c1.getNum());
 				CustomerProductDetail c2=mapper.readValue(array1.get(i).toString(), CustomerProductDetail.class);
 					
 					String name[]=c2.getProductName();
 					int share[]=c2.getProductShare();
 				
-						System.out.print(" [");
+						System.out.print(" Product Share=[");
 						for (int j = 0; j < share.length; j++) 
 						{
 							System.out.print(share[j]+" ");
 						}
 							System.out.print("]");
-							System.out.print(" [");
+							System.out.print(" Product Name=[");
 							for (int j = 0; j < name.length; j++) 
 							{
 								

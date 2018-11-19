@@ -4,10 +4,11 @@ import java.util.Scanner;
 
 public class StockReport 
 {
+	@SuppressWarnings({ "unused", "static-access", "resource" })
 	public static void main(String[] args) 
 	{
 		Scanner scanner=new Scanner(System.in);
-		System.out.println("STOCK   REPORT");
+		System.out.println("WELCOME   TO   STOCK   REPORT");
 		int choice;
 		CustomerInJson customer=null;;
 		do
