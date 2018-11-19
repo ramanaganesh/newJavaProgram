@@ -114,7 +114,6 @@ public class MyLinkedList {
 		count++;
 		t=t.next;
 	}
-	System.out.println(count);
 		return " ";
 	}
 	}

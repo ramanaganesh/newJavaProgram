@@ -10,6 +10,8 @@ package com.algorithmprograms;
 
 import java.util.Scanner;
 
+import com.utility.Utility;
+
 public class BinaryNibble {
 
 /*
@@ -19,19 +21,19 @@ public class BinaryNibble {
  */
 public static void main(String[] args) {
 	//getting an input from the user with the help of scanner
-	Scanner s=new Scanner(System.in);
+	Scanner scanner=new Scanner(System.in);
 	System.out.println("enter the number for nibble");
-	int n=s.nextInt();
+	int number=scanner.nextInt();
 	/*
 	 * 
 	 * using while loop
 	 * to check the value is less than 255
 	 * 
 	 */
-	while(n>256)
+	while(number>256)
 	{
 		System.out.println("enter the number below 256");
-		n=s.nextInt();
+		number=scanner.nextInt();
 	}
 	/*
 	 * function call
@@ -39,8 +41,8 @@ public static void main(String[] args) {
 	 * to swap the binary values and print the corresponding decimal number
 	 * 
 	 */
-	String number=Bin.toBinary(n);
-	Bin.nibbles(number);
-	s.close();
+	String nibbleNumber=Bin.toBinary(number);
+	Utility.nibbles(nibbleNumber);
+	scanner.close();
 }
 }

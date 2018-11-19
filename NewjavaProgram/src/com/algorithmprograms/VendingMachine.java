@@ -13,6 +13,8 @@ package com.algorithmprograms;
  */
 import java.util.Scanner;
 
+import com.utility.Utility;
+
 public class VendingMachine {
 	/*
 	 * This is main function
@@ -21,8 +23,8 @@ public class VendingMachine {
 	 */
 public static void main(String[] args) {
 	//getting an input from the user with the help of scanner
-	Scanner s=new Scanner(System.in);
-	String ch;
+	Scanner scanner=new Scanner(System.in);
+	String choice;
 	/*
 	 * 
 	 * using do while loop
@@ -36,15 +38,15 @@ public static void main(String[] args) {
 		 * function call for choose menu and change
 		 * 
 		 */
-	int amount=Machine.menu();
-	int change=Machine.change(amount);
+	int amount=Utility.menu();
+	int change=Utility.change(amount);
 	/*
 	 * if loop for checking balance in machine or not
 	 * 
 	 */
 	if(change!=-1)
 	{
-	Machine.changeout(change);
+	Utility.changeout(change);
 	System.out.println("thank u fr service");
 	}
 	else
@@ -54,17 +56,17 @@ public static void main(String[] args) {
 	}
 	//getting an input from the user with the help of scanner
 	System.out.println("enter the amount to change");
-	 int amt=s.nextInt();
+	 int changeAmount=scanner.nextInt();
 	 /*
 		 * 
 		 * function call for change
 		 * 
 		 */
-	 Machine.changeout(amt);
+	 Utility.changeout(changeAmount);
 	 System.out.println("try again another shop");
-	 ch=s.next();
-}while(ch.equals("yes"));
-	s.close();
+	 choice=scanner.next();
+}while(choice.equals("yes"));
+	scanner.close();
 }
 
 }

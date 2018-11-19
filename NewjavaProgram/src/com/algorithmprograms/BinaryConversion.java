@@ -13,7 +13,9 @@ package com.algorithmprograms;
  */
 import java.util.Scanner;
 
-public class BinaryConv {
+import com.utility.Utility;
+
+public class BinaryConversion {
 
 /*
  * This is main function
@@ -22,16 +24,16 @@ public class BinaryConv {
  */
 public static void main(String[] args) {
 	//getting an input from the user with the help of scanner
-	Scanner s=new Scanner(System.in);
+	Scanner scanner=new Scanner(System.in);
 	System.out.println("enter the number");
-	int num=s.nextInt();
+	int number=scanner.nextInt();
 	/*
 	 * function call
 	 * to calculate the binary for given decimal number
 	 * 
 	 */
-	String number=Bin.toBinary(num);
-	Bin.padding(number);
-	s.close();
+	String binaryNumber=Utility.toBinary(number);
+	Utility.padding(binaryNumber);
+	scanner.close();
 }
 }

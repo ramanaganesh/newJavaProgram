@@ -4,27 +4,34 @@ import java.util.Scanner;
 
 public class Parenthesis {
 public static void main(String[] args) {
-	MyStack s=new MyStack(10);
-	Scanner sc=new Scanner(System.in);
+	MyStack myStack=new MyStack(10);
+	Scanner scanner=new Scanner(System.in);
 	System.out.println("enter the experssion");
-	String exp=sc.next();
-	char ch[]=exp.toCharArray();
-	
-	for(int i=0;i<exp.length();i++)
+	String expression=scanner.next();
+	char character[]=expression.toCharArray();
+	int flag=0;
+	for(int i=0;i<expression.length();i++)
 	{
-		if(ch[i]=='(' || ch[i]=='{' || ch[i]=='[')
+		if(character[i]=='(' || character[i]=='{' || character[i]=='[')
 		{
-					s.push(ch[i]);
+					myStack.push(character[i]);
 					
 		}
-		else if(((char)s.peek()=='(' && ch[i]==')') ||
-				((char)s.peek()=='{' && ch[i]=='}') ||
-				((char)s.peek()=='[' && ch[i]==']'))
-						s.pop();
+		else if(((char)myStack.peek()=='(' && character[i]==')') ||
+				((char)myStack.peek()=='{' && character[i]=='}') ||
+				((char)myStack.peek()=='[' && character[i]==']'))
+						myStack.pop();
+		else if((char)myStack.peek()=='a')
+		{
+			
+			if(flag==1)
+				myStack.pop();
+			flag++;
+		}
 		
 	}
 	
-	if(s.isEmpty())
+	if(myStack.isEmpty()&& flag==0)
 	{
 		System.out.println("string balanced");
 	}
@@ -32,6 +39,6 @@ public static void main(String[] args) {
 	{
 		System.out.println("not balanced");
 	}
-	sc.close();
+	scanner.close();
 }
 }

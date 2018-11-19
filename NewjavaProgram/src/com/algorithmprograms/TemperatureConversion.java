@@ -13,10 +13,12 @@ package com.algorithmprograms;
  */
 import java.util.Scanner;
 
-public class TemperatureConv {
+import com.utility.Utility;
+
+public class TemperatureConversion {
 public static void main(String[] args) {
 	//getting an input from the user with the help of scanner
-	Scanner s=new Scanner(System.in);
+	Scanner scanner=new Scanner(System.in);
 
 	/*
 	 * function call
@@ -24,11 +26,11 @@ public static void main(String[] args) {
 	 * 
 	 */
 	System.out.println("enter the temperature in celsius");
-	int temp=s.nextInt();
-	Temperatute.conversion(temp);
+	int temperature=scanner.nextInt();
+	Utility.conversionToFahrenheit(temperature);
 	System.out.println("enter the temperature in fahrenheit");
-	temp=s.nextInt();
-	Temperatute.conversion1(temp);
-	s.close();
+	temperature=scanner.nextInt();
+	Utility.conversionToCelsius(temperature);
+	scanner.close();
 }
 }

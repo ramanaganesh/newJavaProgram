@@ -15,9 +15,9 @@ import java.util.Scanner;
 
 public class Machine {
 	
-	static Scanner s=new Scanner(System.in);
-	static int rAmount=0,count=0,balance=10000;
-	static int arr[]= {100,100,100,100,100,100,100,100,100};
+	static Scanner scanner=new Scanner(System.in);
+	static int remainingAmount=0,count=0,balance=10000;
+	static int rupeeCount[]= {100,100,100,100,100,100,100,100,100};
 	/**
 	 * 
 	 * @return return the total amount
@@ -25,7 +25,7 @@ public class Machine {
 	 */
 	static int menu() 
 	{
-		String c;int initial=0;
+		String check;int initial=0;
 		/*
 		 * 
 		 * using do while loop
@@ -39,16 +39,16 @@ public class Machine {
 		
 		System.out.println("1.snickers-20 \n2.pepsi-40 \n3.lays-50 \n4.buiscuit-100");
 		System.out.println("enter ur choice ");
-		int ch=s.nextInt();
+		int choice=scanner.nextInt();
 		/*
 		 * 
 		 * function call to get the amount of particular product
 		 * 
 		 */
-		 initial = initial+priceAmount(ch);
+		 initial = initial+priceAmount(choice);
 		System.out.println("you want more yes/no");
-		c=s.next();
-		}while(c.equals("yes"));
+		check=scanner.next();
+		}while(check.equals("yes"));
 		return  initial;
 	}
 
@@ -77,19 +77,19 @@ public class Machine {
 	{
 		System.out.println("ur item cost "+price);
 		System.out.println("insert the amount ");
-		int amount=s.nextInt();
+		int amount=scanner.nextInt();
 		/*
 		 * 
 		 * function call to check the machine balance
 		 * 
 		 */
-		boolean bs=machineBalance(amount);
-		if(bs)
+		boolean flag=machineBalance(amount);
+		if(flag)
 		{
 		while(amount<price)
 		{
 			System.out.println("give sufficient amount");
-			amount=s.nextInt();
+			amount=scanner.nextInt();
 		}
 		return amount-price;
 		}
@@ -128,13 +128,13 @@ public class Machine {
 	 * itearte upto arr[0]!=0 && change>=1000
 	 * 
 	 */
-	while(change>=1000 && arr[0]!=0)
+	while(change>=1000 && rupeeCount[0]!=0)
 	{
 		
 		change=change-1000;
 		
 		count++;
-		arr[0]--;
+		rupeeCount[0]--;
 		
 	}
 	/*
@@ -148,12 +148,12 @@ public class Machine {
 		System.out.println(1000+" * "+count+"="+(1000*count));
 		count=0;
 		}
-	while(change>=500&& arr[1]!=0)
+	while(change>=500&& rupeeCount[1]!=0)
 	{
 		
 		change=change-500;
 		count++;
-		arr[1]--;
+		rupeeCount[1]--;
 	}
 		if(count!=0)
 		{
@@ -161,12 +161,12 @@ public class Machine {
 		count=0;
 		}
 
-	while(change>=200&& arr[2]!=0)
+	while(change>=200&& rupeeCount[2]!=0)
 	{
 		
 		change=change-200;
 		count++;
-		arr[2]--;
+		rupeeCount[2]--;
 	}
 		if(count!=0)
 		{
@@ -174,11 +174,11 @@ public class Machine {
 		count=0;
 		}
 
-	while(change>=100&& arr[3]!=0)
+	while(change>=100&& rupeeCount[3]!=0)
 	{
 		change=change-100;
 		count++;
-		arr[3]--;
+		rupeeCount[3]--;
 	}	
 		if(count!=0)
 		{
@@ -186,11 +186,11 @@ public class Machine {
 		count=0;
 		}
 
-	while(change>=50&& arr[4]!=0)
+	while(change>=50&& rupeeCount[4]!=0)
 	{
 		change=change-50;
 		count++;
-		arr[4]--;
+		rupeeCount[4]--;
 	}	
 		if(count!=0)
 		{
@@ -198,11 +198,11 @@ public class Machine {
 		count=0;
 		}
 
-	while(change>=20&& arr[5]!=0)
+	while(change>=20&& rupeeCount[5]!=0)
 	{
 		change=change-20;
 		count++;
-		arr[5]--;
+		rupeeCount[5]--;
 	}
 		if(count!=0)
 		{
@@ -210,22 +210,22 @@ public class Machine {
 		count=0;
 		}
 
-	while(change>=10&& arr[6]!=0)
+	while(change>=10&& rupeeCount[6]!=0)
 	{
 		change=change-10;
 		count++;
-		arr[6]--;	
+		rupeeCount[6]--;	
 	}
 		if(count!=0)
 		{
 		System.out.println(10+" * "+count+"="+(10*count));
 		count=0;
 		}
-	while(change>=5&& arr[7]!=0)
+	while(change>=5&& rupeeCount[7]!=0)
 	{
 		change=change-5;
 		count++;
-		arr[7]--;
+		rupeeCount[7]--;
 	}
 		if(count!=0)
 		{
@@ -233,11 +233,11 @@ public class Machine {
 		count=0;
 		}
 
-	while(change>=1&& arr[8]!=0)
+	while(change>=1&& rupeeCount[8]!=0)
 	{
 		change=change-1;
 		count++;
-		arr[8]--;
+		rupeeCount[8]--;
 	}	
 		if(count!=0)
 		{

@@ -11,34 +11,34 @@ public class FindingDay {
 	/**
 	 * 
 	 * @param year year
-	 * @param m month
+	 * @param month month
 	 * @param date date
 	 */
-static void dayOfWeek(int year,String m,int date)
+static public  void dayOfWeek(int year,String month,int date)
 {
 	int add=(year%100)+((year%100)/4);
 	// to find the year code
-		int yearCode=add%7,mc=0,cc=0;
+		int yearCode=add%7,monthCode=0,centuryCode=0;
 		/*
 		 * 
 		 * using switch case
 		 * to find the month code
 		 * 
 		 */
-	switch(m)
+	switch(month)
 	{
-		case "jan":mc=0;break;
-		case "feb":mc=3;break;
-		case "mar":mc=3;break;
-		case "apr":mc=6;break;
-		case "may":mc=1;break;
-		case "jun":mc=4;break;
-		case "jul":mc=6;break;
-		case "aug":mc=2;break;
-		case "sep":mc=5;break;
-		case "oct":mc=0;break;
-		case "nov":mc=3;break;
-		case "dec":mc=5;break;
+		case "jan":monthCode=0;break;
+		case "feb":monthCode=3;break;
+		case "mar":monthCode=3;break;
+		case "apr":monthCode=6;break;
+		case "may":monthCode=1;break;
+		case "jun":monthCode=4;break;
+		case "jul":monthCode=6;break;
+		case "aug":monthCode=2;break;
+		case "sep":monthCode=5;break;
+		case "oct":monthCode=0;break;
+		case "nov":monthCode=3;break;
+		case "dec":monthCode=5;break;
 	}
 	/*
 	 * 
@@ -46,25 +46,25 @@ static void dayOfWeek(int year,String m,int date)
 	 * find the century code
 	 * 
 	 */
-	if(year>=1700 && year<1800) cc=4;
-	if(year>=1800 && year<1900) cc=2;
-	if(year>=1900 && year<2000) cc=0;
-	if(year>=2000 && year<2100) cc=6;
-	if(year>=2100 && year<2200) cc=4;
-	if(year>=2200 && year<2300) cc=2;
-	if(year>=2300 && year<2400) cc=0;
+	if(year>=1700 && year<1800) centuryCode=4;
+	if(year>=1800 && year<1900) centuryCode=2;
+	if(year>=1900 && year<2000) centuryCode=0;
+	if(year>=2000 && year<2100) centuryCode=6;
+	if(year>=2100 && year<2200) centuryCode=4;
+	if(year>=2200 && year<2300) centuryCode=2;
+	if(year>=2300 && year<2400) centuryCode=0;
 	
 	//add all the yearcode,monthcode and centurycode
-	int last=yearCode+mc+cc+date;
+	int lastValue=yearCode+monthCode+centuryCode+date;
     //to check the odd days
-	last=last%7;
+	lastValue=lastValue%7;
 	/*
 	 * 
 	 * using switch case
 	 * to print the day
 	 * 
 	 */
-	switch(last)
+	switch(lastValue)
 	{
 	case 0:System.out.println("sunday");break;
 	case 1:System.out.println("monday");break;

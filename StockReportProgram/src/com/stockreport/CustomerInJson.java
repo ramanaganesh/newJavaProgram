@@ -41,18 +41,17 @@ public class CustomerInJson
 	c.setName(scanner.next());
 	System.out.println("enter ur phone number");
 	c.setNum(scanner.next());
-	int product[]=new int[3];
-	String name[]=new String[3];
-	for (int i = 0; i < 3; i++)
+	
+	String name[];
+	name=getStockName();
+	c1.setProductName(name);
+	int product[]=new int[name.length];
+	for (int i = 0; i < product.length; i++)
 	{
 		product[i]=0;
 		
 	}
-	
 	c1.setProductShare(product);
-	
-	name=getStockName();
-	c1.setProductName(name);
 	ObjectMapper mapper=new ObjectMapper();
 	String json="[",json1="[";
 	
@@ -146,7 +145,7 @@ public class CustomerInJson
 				}
 			} catch (IOException | ParseException e)
 			{
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 			if(flag==1)

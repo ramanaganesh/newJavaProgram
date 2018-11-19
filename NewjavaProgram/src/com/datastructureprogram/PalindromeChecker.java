@@ -8,33 +8,33 @@ public class PalindromeChecker {
 		
 	
 	System.out.println("enter the word");
-Scanner s=new Scanner(System.in);
-String word=s.next();
-MyDeque q=new MyDeque(word.length()*2);
-char ch[]=word.toCharArray();
-char chk[]=new char[word.length()];
-char chk1[]=new char[word.length()];
+Scanner scanner=new Scanner(System.in);
+String word=scanner.next();
+MyDeque myDeque=new MyDeque(word.length()*2);
+char character[]=word.toCharArray();
+char check[]=new char[word.length()];
+char check1[]=new char[word.length()];
 int flag=0;
-for (int i = 0; i < ch.length; i++) {
-	  	q.addRear(ch[i]);
+for (int i = 0; i < character.length; i++) {
+	  	myDeque.addRear(character[i]);
 }
 
-for (int i = ch.length-1; i >=0; i--) {
+for (int i = character.length-1; i >=0; i--) {
 	//System.out.println(ch[i]);
-  	q.addFront(ch[i]);
+  	myDeque.addFront(character[i]);
 }
 
-for(int i=0;i<ch.length;i++)
+for(int i=0;i<character.length;i++)
 {
-	chk[i]=(char)q.removeRear();
+	check[i]=(char)myDeque.removeRear();
 	//System.out.print(chk[i]+" ");
 	
 }
 
 
-for(int i=0;i<ch.length;i++)
+for(int i=0;i<character.length;i++)
 {
-	chk1[i]=(char)q.removeFront();
+	check1[i]=(char)myDeque.removeFront();
 	//System.out.print(chk1[i]+" ");
 }
 
@@ -42,9 +42,9 @@ for(int i=0;i<ch.length;i++)
 
 
 
-for (int i = 0; i < chk1.length; i++) {
+for (int i = 0; i < check1.length; i++) {
 	
-	if(chk[i]!=chk1[i])
+	if(check[i]!=check1[i])
 	{
 		flag=1;
 		System.out.println("not palindrome");
@@ -55,7 +55,7 @@ if(flag==0)
 {
 System.out.println("palindrome");	
 }
-s.close();
+scanner.close();
 }
 	
 }

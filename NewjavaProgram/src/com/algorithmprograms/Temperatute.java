@@ -15,7 +15,7 @@ public class Temperatute
 	 * @param temp its used to convert into fahrenheit and celsius
 	 * 
 	 */
-static void conversion(int temp)
+static public  void conversion(int temp)
 	{
 	//formula to convert the temperature
 	int f=(temp*9/5)+32;
@@ -23,7 +23,7 @@ static void conversion(int temp)
 	//print the result
 	System.out.println(f+"°F");
 	}
-static void conversion1(int temp)
+static public void conversion1(int temp)
 {
 	int c=(temp-32) * 5/9;
 	System.out.println(c+"°C");

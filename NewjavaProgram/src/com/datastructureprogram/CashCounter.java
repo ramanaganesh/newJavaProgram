@@ -3,17 +3,17 @@ import java.util.Scanner;
 
 public class CashCounter {
 public static void main(String[] args) {
-	Scanner s=new Scanner(System.in);
+	Scanner scanner=new Scanner(System.in);
    
      System.out.println("enter how many person in queue?");
-     int num=s.nextInt();
-     int ch;
-     MyQueue q=new MyQueue(10);
-     System.out.println("enter "+num+ " person added to queue");
-     for(int i=0;i<num;i++)
+     int numberOfPerson=scanner.nextInt();
+     int choice;
+     MyQueue myQueue=new MyQueue(numberOfPerson);
+     System.out.println("enter "+numberOfPerson+ " person added to queue");
+     for(int i=0;i<numberOfPerson;i++)
      {
-    	 String n=s.next();
-    	 q.Enqueue(n);
+    	 String name=scanner.next();
+    	 myQueue.Enqueue(name);
      }
 	do
 	{
@@ -21,28 +21,28 @@ public static void main(String[] args) {
 		System.out.println("---------bank cash counter-------");
 		System.out.println("1.deposit \n2.withdraw \n3.No of people \n4.exit");
 		System.out.println("enter ur choice");
-		ch=s.nextInt();
-		switch(ch)
+		choice=scanner.nextInt();
+		switch(choice)
 		{
 		case 1:System.out.println("enter the amount to deposit");
-		        int depositAmount=s.nextInt();
-		        q.bankAmount(depositAmount,ch);
-		        num--;
-		        q.dequeue();
+		        int depositAmount=scanner.nextInt();
+		        myQueue.bankAmount(depositAmount,choice);
+		        numberOfPerson--;
+		        myQueue.dequeue();
 		        break;
 		case 2:System.out.println("enter the amount to withdraw");
-		        int withdraw=s.nextInt();
-		        if(q.bankAmount(withdraw, ch)==true)
+		        int withdraw=scanner.nextInt();
+		        if(myQueue.bankAmount(withdraw, choice)==true)
 		        {
-		        	num--;
-		        	q.dequeue();
+		        	numberOfPerson--;
+		        	myQueue.dequeue();
 		        }
 		        break;
-		case 3:System.out.println("no of people in queue is "+q.isSize()); 
+		case 3:System.out.println("no of people in queue is "+myQueue.isSize()); 
 				break;
 		case 4:System.exit(0);
 		}
-	}while(num>0);
-	s.close();
+	}while(numberOfPerson>0);
+	scanner.close();
 }
 }

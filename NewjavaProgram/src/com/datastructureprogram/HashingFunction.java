@@ -7,24 +7,24 @@ import java.io.IOException;
 
 public class HashingFunction {
 	public static void main(String[] args) throws Exception {
-		FileReader fr=new FileReader(new File("/home/bridgelabz/number.txt"));
-		BufferedReader bf=new BufferedReader(fr);
+		FileReader fileReader=new FileReader(new File("/home/bridgelabz/number.txt"));
+		BufferedReader bufferedReader=new BufferedReader(fileReader);
 		String line;
-		int arr[];
-		Hash h=new Hash();
+		int number[];
+		Hash hash=new Hash();
 		
 		try
 		{
-		  while((line = bf.readLine()) != null)
+		  while((line = bufferedReader.readLine()) != null)
 	      {
 			  String words[] = line.split(", ");
-			  arr=new int[words.length];
-			  for (int i = 0; i <12; i++) {
-				  		arr[i]=Integer.parseInt(words[i]);
-				  		h.add(arr[i]);
+			  number=new int[words.length];
+			  for (int i = 0; i <number.length; i++) {
+				  		number[i]=Integer.parseInt(words[i]);
+				  		hash.add(number[i]);
 }
 	      }
-		  System.out.println(h);
+		  System.out.println(hash);
 		  	/*h.search(11);
 			System.out.println("after");
 			System.out.println(h);*/

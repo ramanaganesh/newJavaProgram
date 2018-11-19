@@ -9,6 +9,8 @@
 package com.algorithmprograms;
 import java.util.Scanner;
 
+import com.utility.Utility;
+
 public class Calender {
 
 /*
@@ -17,20 +19,20 @@ public class Calender {
  * 
  */
 public static void main(String[] args) {
-	Scanner s=new Scanner(System.in);
+	Scanner scanner=new Scanner(System.in);
 	System.out.println("enter the year");
-	int year=s.nextInt();
+	int year=scanner.nextInt();
 	System.out.println("enter the month in words");
-	String month=s.next();
+	String month=scanner.next();
 	System.out.println("enter the date");
-	int date=s.nextInt();
+	int date=scanner.nextInt();
 	System.out.println("the day of the date is ");
 	/*
 	 * function call
 	 * to print the day
 	 * 
 	 */
-	FindingDay.dayOfWeek(year,month,date);
-	s.close();
+	Utility.dayOfWeek(year,month,date);
+	scanner.close();
 }
 }

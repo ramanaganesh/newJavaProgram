@@ -8,6 +8,8 @@
   *************************************************************/
 package com.algorithmprograms;
 
+import com.utility.Utility;
+
 public class MergeSort {
 	/*
 	 * This is main function
@@ -24,11 +26,11 @@ public static void main(String[] args) {
 	 * return sorted string
 	 * 
 	 */
-	String w[]=Sort.sort(word, 0, word.length-1);
+	String sortedWord[]=Utility.mergeSort(word, 0, word.length-1);
 	System.out.print("[");
 	//print the results
-	for (int i = 0; i < w.length; i++) {
-		System.out.print(w[i]+" ");
+	for (int i = 0; i < sortedWord.length; i++) {
+		System.out.print(sortedWord[i]+" ");
 	}
 	System.out.print("]");
 }
