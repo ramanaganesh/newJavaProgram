@@ -9,6 +9,7 @@ public class StockReport
 	{
 		Scanner scanner=new Scanner(System.in);
 		System.out.println("WELCOME   TO   STOCK   REPORT");
+		System.out.println("-----------------------------");
 		int choice;
 		CustomerInJson customer=null;;
 		do

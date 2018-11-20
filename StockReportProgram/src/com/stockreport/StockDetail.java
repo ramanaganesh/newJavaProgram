@@ -3,7 +3,6 @@ package com.stockreport;
 import java.io.FileReader;
 import java.io.IOException;
 
-import org.codehaus.jackson.map.ObjectMapper;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
