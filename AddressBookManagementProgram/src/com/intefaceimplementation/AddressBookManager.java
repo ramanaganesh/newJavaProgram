@@ -1,12 +1,15 @@
 package com.intefaceimplementation;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import com.module.Person;
 
 public interface AddressBookManager 
 {
-ArrayList<Object> createNewAddressBook(String path);
-void openAddressBook();
-void saveAddressBook(ArrayList<Object> arrayList,String path);
+List<Person> createNewAddressBook(String path);
+String openAddressBook();
+void saveAddressBook(List<Person> arrayList,String path);
 void closeAddressBook();
 void quitAddressBook();
 }

@@ -21,17 +21,21 @@ import com.utility.FileWriteAndRead;
 public class AddressBookManagerImplementation implements AddressBookManager
 {
 	Scanner scanner=new Scanner(System.in);
+	int choice;
+	String check;
+	AddressBookImplementation addressBookImplementation=new AddressBookImplementation();
+
 	@Override
-	public ArrayList<Object> createNewAddressBook(String path)
+	public List<Person> createNewAddressBook(String path)
 	{
-		AddressBookImplementation addressBookImplementation=new AddressBookImplementation();
-		ArrayList<Object> arrayList=addressBookImplementation.addNewPerson(path);
+		List<Person> arrayList=addressBookImplementation.addNewPerson();
 		return arrayList;
 	}
 
 	@Override
-	public void openAddressBook() 
+	public String openAddressBook() 
 	{
+		List<Person> personList=new ArrayList<>();
 	File file=new File("/home/bridgelabz/address/")	;
 	 File[] files = file.listFiles();
 	 String fileName[]=new String[files.length];
@@ -48,37 +52,54 @@ public class AddressBookManagerImplementation implements AddressBookManager
 	 {
 		 if(fileName[j].equals(addressBook))
 		 {
-			 openBook(addressBook);
+			 personList=openBook(addressBook);
 		 }
 	 }
+	 return addressBook;
 	}
 
-	private void openBook(String addressBook) 
+	public static List<Person> openBook(String addressBook) 
 	{
 		String path="/home/bridgelabz/address/"+addressBook;
 		JSONParser parser=new JSONParser();
 		ObjectMapper mapper=new ObjectMapper();
-		try {
-			Object obj = parser.parse(new FileReader(path));
-			JSONArray array=new JSONArray();
-			array=(JSONArray) obj;
-			for (int i = 0; i < array.size(); i++)
+		List<Person> editPersonList=new ArrayList<>();
+		List<Person> personList=new ArrayList<>();
+		File file=new File(path);
+		if(file.length()==0)
+			System.out.println("file is empty please write/save this file");
+		else
+		{
+			try 
 			{
-				System.out.println();
-				Person person=mapper.readValue(array.get(i).toString(), Person.class);
-				System.out.print(person.getFirstName()+" "+person.getLastName()+" "+person.getAddress());
-			}
-		} catch (IOException | ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+				Object obj = parser.parse(new FileReader(path));
+				JSONArray array=new JSONArray();
+				
+				array=(JSONArray) obj;
+				for (int i = 0; i < array.size(); i++)
+				{
+					System.out.println();
+					personList.add(mapper.readValue(array.get(i).toString(), Person.class));
+					System.out.println(i);
+				}
+				System.out.println("HI"+personList);
+					System.out.println();
+					
+					
 		
-	
-	
+			}
+			catch (IOException | ParseException e) 
+			{
+			// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		}
+	return  personList;
 	}
 
 	@Override
-	public void saveAddressBook(ArrayList<Object> arrayList,String path) 
+	public void saveAddressBook(List<Person> arrayList,String path) 
 	{
 		
 				FileWriteAndRead.fileWrite(arrayList,path);

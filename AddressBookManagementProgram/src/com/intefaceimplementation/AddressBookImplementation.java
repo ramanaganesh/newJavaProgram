@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 import com.module.Address;
@@ -14,26 +16,21 @@ import com.utility.FileWriteAndRead;
 public class AddressBookImplementation implements AddressBook
 {
 	Scanner scanner=new Scanner(System.in);
-	String path="",name;
+	String name;
+	//String path="",name;
 	
 	@Override
-	public ArrayList<Object> addNewPerson(String path) 
+	public List<Person> addNewPerson() 
 	{
 		
 		
 		String flag=null;
-		String check=null;
-		ArrayList arrayList=new ArrayList();
+		// check=null;
+		@SuppressWarnings("rawtypes")
+		List<Person> arrayList=new ArrayList();
 
 		
 		
-		
-		try {
-			FileWriter fileWriter=new FileWriter(path);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		
 		do
@@ -63,9 +60,9 @@ public class AddressBookImplementation implements AddressBook
 		person.setAddress(address);
 		    // System.out.println(person);
 			arrayList.add(person);
-		
+		System.out.println(arrayList.size());
 		for (int i = 0; i < arrayList.size(); i++) {
-			System.out.println(arrayList.get(i));
+			System.out.println("list="+arrayList.get(i));
 		}
 		
 		//System.out.println(arrayList);
@@ -78,21 +75,59 @@ public class AddressBookImplementation implements AddressBook
 	}
     
 	@Override
-	public void editExistingPerson() {
-		// TODO Auto-generated method stub
+	public List<Person> editExistingPerson(List<Person> personList) 
+	{
+		System.out.println("which person detail u want to edit");
 		
+		for (int i = 0; i < personList.size(); i++) 
+		{
+			System.out.println(personList.get(i));
+		}
+		System.out.println("enter the first name");
+		name=scanner.next();
+		for (int i = 0; i < personList.size(); i++) 
+		{
+			if(personList.get(i).getFirstName().equals(name))
+			{
+				System.out.println(" enter the new name for first name");
+				String firstName=scanner.next();
+				personList.get(i).setFirstName(firstName);
+
+				System.out.println(" enter the new name for last name");
+				String lastName=scanner.next();
+				personList.get(i).setLastName(lastName);
+				
+			}
+		}
+		return personList;
 	}
 
 	@Override
-	public void deletePersonInAddressBook() {
-		// TODO Auto-generated method stub
+	public List<Person> deletePersonInAddressBook(List<Person> personList)
+	{
+		System.out.println("which person detail u want to edit");
 		
+		for (int i = 0; i < personList.size(); i++) 
+		{
+			System.out.println(personList.get(i));
+		}
+		System.out.println("enter the first name");
+		name=scanner.next();
+		for (int i = 0; i < personList.size(); i++) 
+		{
+			if(personList.get(i).getFirstName().equals(name))
+			{
+				personList.remove(i);
+			}
+		}
+		return personList;
 	}
 
 	@Override
-	public void sortByZipcode() {
-		// TODO Auto-generated method stub
+	public void sortByZipcode(List<Person> personList)
+	{
 		
+		//.sort((List<T>)(personList));
 	}
 
 	@Override
