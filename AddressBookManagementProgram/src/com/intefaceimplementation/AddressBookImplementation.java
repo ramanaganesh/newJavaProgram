@@ -126,8 +126,17 @@ public class AddressBookImplementation implements AddressBook
 	@Override
 	public void sortByZipcode(List<Person> personList)
 	{
-		
-		//.sort((List<T>)(personList));
+		/*
+		for (int i = 0; i < personList.size(); i++)
+		{
+			Long ZipCode=(long) 0;
+			ZipCode.compareTo(personList.get(i).getAddress().getZipCode());
+		}
+		System.out.println("after sort");
+		System.out.println(personList);
+		*/
+		Collections.sort(personList);
+		System.out.println(personList);
 	}
 
 	@Override

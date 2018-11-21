@@ -8,8 +8,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.JsonParser;
+import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.type.JavaType;
+import org.codehaus.jackson.type.TypeReference;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -48,29 +52,23 @@ public class AddressBookManagerImplementation implements AddressBookManager
     	  i++;
      }
 	 String addressBook=scanner.next();
-	 for (int j = 0; j < fileName.length; j++) 
-	 {
-		 if(fileName[j].equals(addressBook))
-		 {
-			 personList=openBook(addressBook);
-		 }
-	 }
+	
 	 return addressBook;
 	}
 
 	public static List<Person> openBook(String addressBook) 
 	{
 		String path="/home/bridgelabz/address/"+addressBook;
-		JSONParser parser=new JSONParser();
+		
 		ObjectMapper mapper=new ObjectMapper();
-		List<Person> editPersonList=new ArrayList<>();
+		
 		List<Person> personList=new ArrayList<>();
 		File file=new File(path);
 		if(file.length()==0)
 			System.out.println("file is empty please write/save this file");
 		else
 		{
-			try 
+			/*try 
 			{
 				Object obj = parser.parse(new FileReader(path));
 				JSONArray array=new JSONArray();
@@ -81,18 +79,32 @@ public class AddressBookManagerImplementation implements AddressBookManager
 					System.out.println();
 					personList.add(mapper.readValue(array.get(i).toString(), Person.class));
 					System.out.println(i);
-				}
-				System.out.println("HI"+personList);
+				}*/
+				try {
+					personList=mapper.readValue(new File(path), new TypeReference<List<Person>>() {
+					});
+					System.out.println(personList);
 					System.out.println();
+				} catch (JsonParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (JsonMappingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 					
 					
 		
-			}
+			/*}
 			catch (IOException | ParseException e) 
 			{
 			// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}*/
 		
 		}
 	return  personList;

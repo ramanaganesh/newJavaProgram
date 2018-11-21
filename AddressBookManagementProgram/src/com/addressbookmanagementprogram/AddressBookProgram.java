@@ -1,6 +1,8 @@
 package com.addressbookmanagementprogram;
 
 import java.io.File;
+
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,12 +23,12 @@ public class AddressBookProgram
 	{
 		
 		
-		int choice,count=0;String name,path,check;
+		int choice;String name,path,check;
 		List<Person> arrayList=new ArrayList<>();
 		do
 		{		System.out.println("ADDRESS    BOOK    MANAGER    PROGRAM");
 				System.out.println("-------------------------------------");
-				System.out.println("\n1.new \n2.open \n3.save as \n4.close");
+				System.out.println("\n1.new \n2.open \n3.save \n4.save as \n5.close");
 				System.out.println("enter ur choice");
 				choice=scanner.nextInt();
 				AddressBookManagerImplementation addressBookManagerImplementation=new AddressBookManagerImplementation();
@@ -101,7 +103,7 @@ public class AddressBookProgram
 								e.printStackTrace();
 							}
 							
-							count++;
+							
 							/*if(count==0)
 							{	
 							try {
@@ -158,8 +160,11 @@ public class AddressBookProgram
 				   System.out.println(personList);
 				   }
 				   break;
-			
 			case 3:
+					System.out.println("save address book");
+					System.out.println("book is saved");
+					break;
+			case 4:
 				   System.out.println("save as address book");
 				   if(addressBookName!=null)
 				   {
@@ -170,14 +175,60 @@ public class AddressBookProgram
 				   else
 					   System.out.println("no address book are open");
 				   break;
-			case 4:
+			case 5:
 				   System.out.println("close address book");
-				   System.exit(0);
-				   break;
+				   if(file.listFiles().length!=0)
+					{
+					   File[] files = file.listFiles();
+						 String fileName=null;
+						
+						 for(File f: files)
+					     {
+					    	// fileName[i]=f.getName();
+					    	 System.out.println(f.getName());
+					    	 File file1=new File("/home/bridgelabz/address/"+f.getName());
+					    //	 System.out.println("length="+file1.length()+" "+f.getName());
+					    	 if(file1.length()==0)
+					    		 fileName=f.getName();
+					    	
+					     }
+						 System.out.println("u want to save the previous file yes/no");
+							check=scanner.next();
+							if(check.equals("yes"))
+							{
+								System.out.println(fileName);
+
+								addressBookManagerImplementation.saveAddressBook(arrayList,"/home/bridgelabz/address/"+fileName);
+							}
+					}
+				   System.out.println("u want to save previous modification done by open");
+					 check=scanner.next();
+					 if(check.equals("yes") & addressBookName!=null)
+						 FileWriteAndRead.fileWrite(personList, "/home/bridgelabz/address/"+addressBookName);
+				   if(addressBookName!=null)
+				   {
+					   FileReader fileReader;
+					try {
+						fileReader = new FileReader("/home/bridgelabz/address/"+addressBookName);
+						System.out.println("the "+addressBookName+" is closed");
+						addressBookName=null;
+						fileReader.close();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					   
+				   }
+				   else
+				   
+					   System.out.println("there is no book is currently open");
+				   		System.exit(0);
+				    
+				  
 			
 					
 			}
-		}while(choice!=6);
+		}while(choice<6);
 		scanner.close();
 	}
 	
@@ -190,7 +241,7 @@ public class AddressBookProgram
 		{
 			System.out.println("MODIFYING     ADDRESS    BOOK    PERSON   DETAILS");
 			System.out.println("-------------------------------------------------");
-			System.out.println("\n1.add the person in the addressbook \n2.edit the existing person \n3.delete the person in address book \n4.exit");
+			System.out.println("\n1.add the person in the addressbook \n2.edit the existing person \n3.delete the person in address book \n4sort bi zipCode \n5.exit");
 			System.out.println("enter ur choice");
 			choice=scanner.nextInt();
 			switch(choice)
@@ -200,7 +251,7 @@ public class AddressBookProgram
 				   System.out.println("add new Person");
 				   System.out.println(personList);
 				   List<Person> addList=addressBookImplementation.addNewPerson();
-				   personList.addAll(personList);
+				  // personList.addAll(personList);
 				   personList.addAll(addList);
 				   System.out.println("after adding new person");
 				   System.out.println(personList);
@@ -220,11 +271,12 @@ public class AddressBookProgram
 			case 4:
 					System.out.println("sort by zip Code");
 					addressBookImplementation.sortByZipcode(personList);
+					break;
 			case 5:
 				   return personList;
 				   
 			}
-		}while(choice<4);
+		}while(choice<5);
 		return personList;
 	}
 

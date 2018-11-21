@@ -2,7 +2,7 @@ package com.module;
 
 
 
-public class Person 
+public class Person implements Comparable<Person>
 {
 private String firstName,lastName;
 public Address address;
@@ -34,6 +34,13 @@ public void setLastName(String lastName) {
 @Override
 public String toString() {
 	return "Person [firstName=" + firstName + ", lastName=" + lastName + ", Address=" + address + "]";
+}
+
+@Override
+public int compareTo(Person o) {
+	 long compareage=((Person) o).getAddress().getZipCode();
+     /* For Ascending order*/
+     return (int) (this.address.getZipCode()-compareage);
 }
 
 }
