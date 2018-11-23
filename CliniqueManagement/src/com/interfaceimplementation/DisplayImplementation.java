@@ -13,7 +13,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import com.models.*;
+import com.cliniquemodels.*;
 
 public class DisplayImplementation implements Display
 {

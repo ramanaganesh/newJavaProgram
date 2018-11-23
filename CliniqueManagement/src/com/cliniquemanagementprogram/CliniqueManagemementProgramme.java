@@ -11,11 +11,11 @@ import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 
+import com.cliniquemodels.Doctor;
+import com.cliniquemodels.Patient;
 import com.interfaceimplementation.AddImplementation;
 import com.interfaceimplementation.DisplayImplementation;
 import com.interfaceimplementation.SearchImplementation;
-import com.models.Doctor;
-import com.models.Patient;
 
 public class CliniqueManagemementProgramme 
 {

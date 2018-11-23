@@ -2,10 +2,8 @@ package com.interfaceimplementation;
 
 import java.util.List;
 
-
-
-import com.models.Doctor;
-import com.models.Patient;
+import com.cliniquemodels.Doctor;
+import com.cliniquemodels.Patient;
 
 public interface Entry
 {

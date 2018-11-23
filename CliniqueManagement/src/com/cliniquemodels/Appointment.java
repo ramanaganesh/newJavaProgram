@@ -1,4 +1,4 @@
-package com.models;
+package com.cliniquemodels;
 
 import java.time.LocalTime;
 

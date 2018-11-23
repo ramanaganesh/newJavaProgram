@@ -13,9 +13,9 @@ import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 
-import com.models.Appointment;
-import com.models.Doctor;
-import com.models.Patient;
+import com.cliniquemodels.Appointment;
+import com.cliniquemodels.Doctor;
+import com.cliniquemodels.Patient;
 
 public class SearchImplementation implements Search
 {

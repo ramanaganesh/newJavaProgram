@@ -20,9 +20,9 @@ import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import com.models.Appointment;
-import com.models.Doctor;
-import com.models.Patient;
+import com.cliniquemodels.Appointment;
+import com.cliniquemodels.Doctor;
+import com.cliniquemodels.Patient;
 
 public class AddImplementation  implements Entry
 {
@@ -482,25 +482,33 @@ static Appointment appointment=new Appointment();
 				list.addAll(mapper.readValue(new File("/home/bridgelabz/clinique/patientdetails.json"), new TypeReference<List<Patient>>() {
 				}));
 				System.out.println("list="+list);
+				int size=list.size();
 				for (int i = 0; i < patientList.size(); i++) 
 				{
 					int temp1=0;
 					for (int j = 0; j < list.size(); j++) {
-					//	System.out.println(i+" "+temp1);
+					//System.out.println(i+" "+temp1);
 						//System.out.println(list.get(j)+" "+patientList.get(i));
-						if((list.get(j).getId()==patientList.get(temp1).getId()))
+						if((list.get(j).getId()==patientList.get(i).getId()))
 						{
+							//System.out.println("HIHIHIH");
 							temp1=1;
 							list.set(j, patientList.get(i));
-
+							break;
 						}
 					
 					}
+					System.out.println("temp1=="+temp1);
 					if(temp1==0)
-						list.add(patientList.get(i));
-					
+					{
+						//System.out.println("list size="+size);
+						list.add(size++, patientList.get(i));
+						//System.out.println(list);
+						//System.out.println("normal="+size);
+					//System.out.println("added list  size="+list.size());
+					}
 				}
-				
+				System.out.println("new list"+list);
 				for (int i = 0; i <list.size()-1; i++)
 				{
 					temp=i;
