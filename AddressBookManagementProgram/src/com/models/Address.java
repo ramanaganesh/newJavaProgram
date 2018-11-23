@@ -1,4 +1,4 @@
-package com.module;
+package com.models;
 
 public class Address 
 {

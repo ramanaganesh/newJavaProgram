@@ -7,7 +7,7 @@ import java.util.List;
 import com.models.Doctor;
 import com.models.Patient;
 
-public interface Add
+public interface Entry
 {
 List<Patient> addPatientDetail();
 List<Patient> editPatientDetail(List<Patient> patientList);

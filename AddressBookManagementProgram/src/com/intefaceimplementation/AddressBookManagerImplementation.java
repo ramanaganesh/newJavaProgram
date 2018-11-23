@@ -18,8 +18,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import com.module.Person;
-
+import com.models.Person;
 import com.utility.FileWriteAndRead;
 
 public class AddressBookManagerImplementation implements AddressBookManager

@@ -2,7 +2,7 @@ package com.intefaceimplementation;
 
 import java.util.List;
 
-import com.module.Person;
+import com.models.Person;
 
 public interface AddressBook 
 {

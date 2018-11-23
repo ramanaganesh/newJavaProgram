@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 import com.intefaceimplementation.AddressBookImplementation;
 import com.intefaceimplementation.AddressBookManagerImplementation;
-import com.module.Person;
+import com.models.Person;
 import com.utility.FileWriteAndRead;
 
 public class AddressBookProgram 

@@ -9,8 +9,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-import com.module.Address;
-import com.module.Person;
+import com.models.Address;
+import com.models.Person;
 import com.utility.FileWriteAndRead;
 
 public class AddressBookImplementation implements AddressBook

@@ -24,7 +24,7 @@ import com.models.Appointment;
 import com.models.Doctor;
 import com.models.Patient;
 
-public class AddImplementation  implements Add
+public class AddImplementation  implements Entry
 {
 	Scanner scanner=new Scanner(System.in);
 	List<Patient> patientList=new ArrayList<>();
@@ -380,6 +380,7 @@ static Appointment appointment=new Appointment();
 		Date date=new Date();
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		appointment.setDate(dateFormat.format(date));
+		doctorCount(doctor);
 		File file=new File("/home/bridgelabz/clinique/appointment.json");
 		Object object;
 		 String json="[";
@@ -398,6 +399,7 @@ static Appointment appointment=new Appointment();
 						json=json+array.get(i)+",";
 					//	System.out.println("inner Json"+json);
 					}
+					
 					json=json+mapper.writeValueAsString(appointment)+"]";
 
 				}
@@ -410,6 +412,40 @@ static Appointment appointment=new Appointment();
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		
+	}
+	private void doctorCount(Doctor doctor)
+	{
+	
+			List<Doctor> listDoctor=new ArrayList<>();
+		
+		try {
+			listDoctor.addAll(mapper.readValue(new File("/home/bridgelabz/clinique/doctordetails.json"), new TypeReference<List<Doctor>>() {
+			}));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for (int i = 0; i < listDoctor.size(); i++)
+		{
+			if(doctor.getId()==listDoctor.get(i).getId())
+			{
+				
+				if(doctor.getNumberOfPatient()<5)
+				{
+					System.out.println(doctor);
+					System.out.println("No of patient="+doctor.getNumberOfPatient());
+					System.out.println(doctor.getNumberOfPatient());
+					int count=doctor.getNumberOfPatient();
+					System.out.println("HHIHI"+listDoctor);
+					System.out.println("AAAAA"+listDoctor.get(i));
+					listDoctor.get(i).setNumberOfPatient(++count);
+					System.out.println(doctor);
+					saveDoctorDetail(listDoctor);
+					
+				}
+			}
+		}
 		
 	}
 	@Override

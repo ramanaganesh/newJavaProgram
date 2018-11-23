@@ -12,8 +12,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 import org.json.simple.parser.JSONParser;
 
-
-import com.module.Person;
+import com.models.Person;
 
 public class FileWriteAndRead 
 {

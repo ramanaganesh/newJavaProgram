@@ -19,7 +19,6 @@ import com.models.Patient;
 
 public class SearchImplementation implements Search
 {
-Map<Object,Object> doctorPopular=new HashMap<>(); 
 	@Override
 	public Patient patientSearchByName(List<Patient> patientList,int id)
 	{
@@ -114,22 +113,19 @@ Map<Object,Object> doctorPopular=new HashMap<>();
 	@Override
 	public Doctor doctorSearchByAvailability(List<Doctor> doctorList,int id) 
 	{
-		Doctor doctor=null;
+		Doctor doctor=new Doctor();
+		int flag=0;
 		for (int i = 0; i < doctorList.size(); i++)
 		{
 			if(id==doctorList.get(i).getId())
 			{
-				if(doctorList.get(i).getNumberOfPatient()<6)
+				flag=1;
+				if(doctorList.get(i).getNumberOfPatient()<5)
 				{
 					System.out.println("size="+doctorList.get(i).getNumberOfPatient());
 					System.out.println(doctorList.get(i).getNumberOfPatient());
-					int count=doctorList.get(i).getNumberOfPatient();
-					
-					doctorList.get(i).setNumberOfPatient(++count);
-					System.out.println(doctorList.get(i));
-					AddImplementation addImplementation=new AddImplementation();
-					addImplementation.saveDoctorDetail(doctorList);
-					doctor= doctorList.get(i);
+					doctor=doctorList.get(i);
+					return doctor;
 				}
 				else
 				{
@@ -137,8 +133,11 @@ Map<Object,Object> doctorPopular=new HashMap<>();
 					return null;
 				}
 			}
+			
 		}
-	return doctor;	
+		if(flag==0)
+			System.out.println("entered doctor id is invalid");
+	return null;	
 	}
 
 	@Override
@@ -146,6 +145,8 @@ Map<Object,Object> doctorPopular=new HashMap<>();
 	{
 		ObjectMapper mapper=new ObjectMapper();
 		List<Doctor> listDoctor=new ArrayList<>();
+		Map<Object,Object> doctorPopular=new HashMap<>(); 
+
 		try {
 			listDoctor.addAll(mapper.readValue(new File("/home/bridgelabz/clinique/doctordetails.json"), new TypeReference<List<Doctor>>() {
 			}));
@@ -184,7 +185,7 @@ Map<Object,Object> doctorPopular=new HashMap<>();
 				largestKey = (String)map.getKey();
 			    }
 			}
-			System.out.println("specialoization: " + largestKey);
+			System.out.println("specialization: " + largestKey);
 			System.out.println("Number of patients: " + largestKeyValue);
 		    
 			
@@ -215,14 +216,16 @@ Map<Object,Object> doctorPopular=new HashMap<>();
 			String specialist=null,doctorName=null;;
 			for (int i = 0; i < listDoctor.size(); i++) 
 			{
-				for (int j = 0; j < listDoctor.size(); j++)
+				for (int j = i; j < listDoctor.size(); j++)
 				{
-					
+				//	System.out.println(listDoctor.get(i).getNumberOfPatient()+" "+listDoctor.get(j).getNumberOfPatient());
 					if(listDoctor.get(i).getNumberOfPatient()>listDoctor.get(j).getNumberOfPatient())
 					{
+					//	System.out.println(listDoctor.get(i).getNumberOfPatient());
 						big=listDoctor.get(i).getNumberOfPatient();
 						specialist=listDoctor.get(i).getSpecialization();
 						doctorName=listDoctor.get(i).getName();
+						//System.out.println(big);
 					}
 				}
 			}
