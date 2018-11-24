@@ -10,6 +10,6 @@ public interface AddressBookManager
 List<Person> createNewAddressBook(String path);
 String openAddressBook();
 void saveAddressBook(List<Person> arrayList,String path);
-void closeAddressBook();
-void quitAddressBook();
+void closeAddressBook(String addressBookName);
+
 }

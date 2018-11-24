@@ -80,7 +80,8 @@ public class AddressBookProgram
 						if(check.equals("yes"))
 						{
 							System.out.println(fileName);
-
+							if(fileName!=null)
+							{
 							addressBookManagerImplementation.saveAddressBook(arrayList,"/home/bridgelabz/address/"+fileName);
 							arrayList=addressBookManagerImplementation.createNewAddressBook(path);
 
@@ -90,6 +91,9 @@ public class AddressBookProgram
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
+							}
+							else
+								System.out.println("no previous file");
 							
 						}
 						else
@@ -145,11 +149,16 @@ public class AddressBookProgram
 						if(check.equals("yes"))
 						{
 							System.out.println(fileName);
-
+							if(fileName!=null)
 							addressBookManagerImplementation.saveAddressBook(arrayList,"/home/bridgelabz/address/"+fileName);
+							else
+								System.out.println("no previous file");
 						}
 				}
 				   System.out.println("open address book");
+				   File[] files = file.listFiles();
+				   if(files.length!=0)
+				   {
 				   addressBookName=addressBookManagerImplementation.openAddressBook();
 				   File out=new File("/home/bridgelabz/address/"+addressBookName);
 				   if(out.length()!=0)
@@ -159,10 +168,40 @@ public class AddressBookProgram
 				   System.out.println("after modifing PersonList");
 				   System.out.println(personList);
 				   }
+				   }
+				   else
+					   System.out.println("ther is no file in the folder to open");
 				   break;
 			case 3:
 					System.out.println("save address book");
-					System.out.println("book is saved");
+					if(file.listFiles().length!=0)
+					{
+					   File[] files1 = file.listFiles();
+						 String fileName=null;
+						
+						 for(File f: files1)
+					     {
+					    	// fileName[i]=f.getName();
+					    	 System.out.println(f.getName());
+					    	 File file1=new File("/home/bridgelabz/address/"+f.getName());
+					    //	 System.out.println("length="+file1.length()+" "+f.getName());
+					    	 if(file1.length()==0)
+					    		 fileName=f.getName();
+					    	
+					     }
+						 System.out.println("u want to save the previous file yes/no");
+							check=scanner.next();
+							if(check.equals("yes"))
+							{
+								System.out.println(fileName);
+								if(fileName!=null)
+								addressBookManagerImplementation.saveAddressBook(arrayList,"/home/bridgelabz/address/"+fileName);
+								else
+									System.out.println("no previous file ");
+							}
+					}
+					else
+						System.out.println("there is no file to save");
 					break;
 			case 4:
 				   System.out.println("save as address book");
@@ -179,10 +218,10 @@ public class AddressBookProgram
 				   System.out.println("close address book");
 				   if(file.listFiles().length!=0)
 					{
-					   File[] files = file.listFiles();
+					   File[] files2 = file.listFiles();
 						 String fileName=null;
 						
-						 for(File f: files)
+						 for(File f: files2)
 					     {
 					    	// fileName[i]=f.getName();
 					    	 System.out.println(f.getName());
@@ -197,33 +236,17 @@ public class AddressBookProgram
 							if(check.equals("yes"))
 							{
 								System.out.println(fileName);
-
+								if(fileName!=null)
 								addressBookManagerImplementation.saveAddressBook(arrayList,"/home/bridgelabz/address/"+fileName);
+								else
+									System.out.println("no previous file is open");
 							}
 					}
 				   System.out.println("u want to save previous modification done by open");
 					 check=scanner.next();
 					 if(check.equals("yes") & addressBookName!=null)
 						 FileWriteAndRead.fileWrite(personList, "/home/bridgelabz/address/"+addressBookName);
-				   if(addressBookName!=null)
-				   {
-					   FileReader fileReader;
-					try {
-						fileReader = new FileReader("/home/bridgelabz/address/"+addressBookName);
-						System.out.println("the "+addressBookName+" is closed");
-						addressBookName=null;
-						fileReader.close();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					   
-				   }
-				   else
-				   
-					   System.out.println("there is no book is currently open");
-				   		System.exit(0);
-				    
+				 addressBookManagerImplementation.closeAddressBook(addressBookName);
 				  
 			
 					
@@ -273,10 +296,14 @@ public class AddressBookProgram
 					addressBookImplementation.sortByZipcode(personList);
 					break;
 			case 5:
+					System.out.println("printing detail");
+					addressBookImplementation.printout(personList);
+					break;
+			case 6:
 				   return personList;
 				   
 			}
-		}while(choice<5);
+		}while(choice<6);
 		return personList;
 	}
 

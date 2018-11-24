@@ -140,9 +140,10 @@ public class AddressBookImplementation implements AddressBook
 	}
 
 	@Override
-	public void printout() {
-		// TODO Auto-generated method stub
+	public void printout(List<Person> personList) 
+	{
 		
+		System.out.println(personList);
 	}
 
 }

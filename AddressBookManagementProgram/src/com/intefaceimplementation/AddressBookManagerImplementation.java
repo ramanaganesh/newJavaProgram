@@ -119,15 +119,29 @@ public class AddressBookManagerImplementation implements AddressBookManager
 	
 
 	@Override
-	public void closeAddressBook() {
-		// TODO Auto-generated method stub
-		
+	public void closeAddressBook(String addressBookName) {
+		  if(addressBookName!=null)
+		   {
+			   FileReader fileReader;
+			try {
+				fileReader = new FileReader("/home/bridgelabz/address/"+addressBookName);
+				System.out.println("the "+addressBookName+" is closed");
+				addressBookName=null;
+				fileReader.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			   
+		   }
+		   else
+		   
+			   System.out.println("there is no book is currently open");
+		   		System.exit(0);
+		    
 	}
 
-	@Override
-	public void quitAddressBook() {
-		// TODO Auto-generated method stub
-		
-	}
+	
+
 
 }
