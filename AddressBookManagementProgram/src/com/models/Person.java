@@ -1,6 +1,6 @@
 package com.models;
 
-
+import com.sun.org.apache.xml.internal.resolver.helpers.PublicId;
 
 public class Person implements Comparable<Person>
 {
@@ -42,5 +42,11 @@ public int compareTo(Person o) {
      /* For Ascending order*/
      return (int) (this.address.getZipCode()-compareage);
 }
-
+public int CompareTo(Person o)
+{
+	 String compareage=((Person) o).getFirstName();
+     /* For Ascending order*/
+     return (int)  (this.firstName.hashCode()-compareage.hashCode());
 }
+}
+

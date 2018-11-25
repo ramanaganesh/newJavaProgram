@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -138,12 +139,24 @@ public class AddressBookImplementation implements AddressBook
 		Collections.sort(personList);
 		System.out.println(personList);
 	}
-
+	@Override
+	public void sortByName(List<Person> personList) 
+	{
+		/*Collections.sort(personList, Comparator.comparing(Person::getFirstName()));*/
+		Collections.sort(personList, new Comparator<Person>() {
+		    public int compare(Person v1, Person v2) {
+		        return v1.getFirstName().compareTo(v2.getFirstName());
+		    }
+		});
+		System.out.println(personList);
+	}
 	@Override
 	public void printout(List<Person> personList) 
 	{
 		
 		System.out.println(personList);
 	}
+
+	
 
 }

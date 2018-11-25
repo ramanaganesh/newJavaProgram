@@ -10,6 +10,7 @@ public interface AddressBook
  List<Person> editExistingPerson(List<Person> list);
  List<Person> deletePersonInAddressBook(List<Person> list);
  void sortByZipcode(List<Person> list);
+ void sortByName(List<Person> List);
  void printout(List<Person> person);
   
 }
