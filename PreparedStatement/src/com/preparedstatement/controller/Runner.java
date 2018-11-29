@@ -23,6 +23,7 @@ public static void main(String[] args)
 		do
 		{
 			System.out.println("\n1.insert \n2.update \n3.delete \n4.display");
+			System.out.println("enter ur choice");
 			int choice=scanner.nextInt();
 			switch(choice)
 			{

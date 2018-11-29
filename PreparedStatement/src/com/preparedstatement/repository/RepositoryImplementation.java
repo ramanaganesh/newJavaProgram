@@ -41,14 +41,15 @@ public class RepositoryImplementation implements  Repository
 		System.out.println(con);
 		
 		try {
-			stmt =con.prepareStatement("insert into student(name,department) values(?,?)");
-			stmt.setString(1, name);
-			stmt.setString(2, dept);
-			stmt.executeUpdate();  
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+				stmt =con.prepareStatement("insert into student(name,department) values(?,?)");
+				stmt.setString(1, name);
+				stmt.setString(2, dept);
+				stmt.executeUpdate();  
+			}
+		catch (SQLException e) 
+			{
+				e.printStackTrace();
+			}
 		
 	}
 
