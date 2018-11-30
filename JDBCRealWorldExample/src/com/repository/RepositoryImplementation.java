@@ -271,8 +271,8 @@ public class RepositoryImplementation implements Repository
 			while(resultSet.next())
 			{
 				System.out.println();
-				System.out.print(resultSet.getInt(1)+" "+resultSet.getString(2)+" "+resultSet.getString(3)+" "+resultSet.getString(4)+" "+resultSet.getString(5)+" ");
-				System.out.println(resultSet.getInt(6)+" "+resultSet.getString(7)+" "+resultSet.getInt(8)+" "+resultSet.getInt(9)+" "+resultSet.getString(10));
+				System.out.print("id="+resultSet.getInt(1)+" movieName="+resultSet.getString(2)+" censorBoard="+resultSet.getString(3)+" language="+resultSet.getString(4)+" format="+resultSet.getString(5)+" ");
+				System.out.println("screens="+resultSet.getInt(6)+" month="+resultSet.getString(7)+" date="+resultSet.getInt(8)+" year="+resultSet.getInt(9)+" status="+resultSet.getString(10));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

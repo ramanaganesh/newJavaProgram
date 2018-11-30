@@ -31,11 +31,11 @@ public class MainRunner
 			System.out.println("------------------------");
 			System.out.println("login process");
 			boolean check=repository.loginVerification();
-			int count=1;
-			while(!check && count<4)
+			int count=3;
+			while(!check && count>0)
 			{
-				System.out.println("re-enter the correct username and password and "+(3-count)+" times left");
-				count++;
+				System.out.println("re-enter the correct username and password and "+(--count)+" times left");
+				
 				check=repository.loginVerification();
 			}
 			if(check)
