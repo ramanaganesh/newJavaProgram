@@ -48,5 +48,6 @@ public class MainRunner
 			check=scanner.next();
 			}while(check.equals("yes"));
 		}
+		scanner.close();
 	}
 }
