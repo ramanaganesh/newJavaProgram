@@ -7,7 +7,7 @@ import com.repository.RepositoryImplementation;
 import com.service.Service;
 import com.service.ServiceImplementation;
 
-public class MainRunner 
+public class BookMyShow 
 {
 	public static void main(String[] args) 
 	{
@@ -83,5 +83,6 @@ public class MainRunner
 		}
 		else
 			System.out.println("not connected");
+		scanner.close();
 	}
 }
