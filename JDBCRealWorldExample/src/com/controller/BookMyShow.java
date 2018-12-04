@@ -17,8 +17,8 @@ public class BookMyShow
 		int choice;
 		System.out.println("BOOK    MY    SHOW");
 		System.out.println("-------------------");
-		System.out.println("LOGGING   REGISTER");
-		System.out.println("------------------");
+		System.out.println("LOGIN   AND   REGISTER");
+		System.out.println("----------------------");
 		boolean flag=service.check();String temp;
 		if(flag)
 		{
