@@ -7,16 +7,28 @@
 
 	<welcome-file-list>
 		<welcome-file>form.html</welcome-file>
+		<welcome-file>Register.html</welcome-file>
 	</welcome-file-list>
 	
 	<servlet-mapping>
 		<servlet-name>FirstServ</servlet-name>
-		<url-pattern>/fx</url-pattern>
+		<url-pattern>/fs</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
 		<servlet-name>FirstServ</servlet-name>
 		<servlet-class>com.bridgelabz.controller.FirstServlet</servlet-class>
 	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>Display</servlet-name>
+		<url-pattern>/fx</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Display</servlet-name>
+		<servlet-class>com.bridgelabz.controller.DisplayDataBase</servlet-class>
+	</servlet>
+	
 
 </web-app>
