@@ -54,8 +54,8 @@ public class DisplayDataBase extends HttpServlet
 	}
        if(flag==0)
        {
-    	  out.println("first register ur details in our Register website page..../n");
-    	  out.println("<html><a href='UserRegister.html'>registerpage</a></html>");
+    	  out.println("first register ur details in our Register website page....");
+    	  out.println("<html><body bgcolor='cyan'><a href='UserRegister.html'>registerpage</a></body></html>");
        }
     }
     public void destroy() 

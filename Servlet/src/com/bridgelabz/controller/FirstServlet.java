@@ -45,7 +45,7 @@ public class FirstServlet extends HttpServlet
 					int i = ps.executeUpdate();
 					if (i > 0)
 		                out.print("You are successfully registered...");
-			    	  out.println("<html>Login?<a href='login.html'>login</a></html>");
+			    	  out.println("<html><body bgcolor='yellow'>Login?<a href='login.html'>login</a></body></html>");
 
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
