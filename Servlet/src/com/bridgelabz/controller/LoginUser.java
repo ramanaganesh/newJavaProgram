@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class DisplayDataBase extends HttpServlet
+public class LoginUser extends HttpServlet
 {
 	/**
 	 * 
@@ -46,6 +46,7 @@ public class DisplayDataBase extends HttpServlet
 			{
 				out.write("you are authorized one to access database");
 				flag=1;
+				break;
 			}
 		}
 	} catch (SQLException e) {

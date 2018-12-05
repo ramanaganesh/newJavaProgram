@@ -11,23 +11,23 @@
 	</welcome-file-list>
 	
 	<servlet-mapping>
-		<servlet-name>FirstServ</servlet-name>
+		<servlet-name>register</servlet-name>
 		<url-pattern>/fs</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
-		<servlet-name>FirstServ</servlet-name>
-		<servlet-class>com.bridgelabz.controller.FirstServlet</servlet-class>
+		<servlet-name>register</servlet-name>
+		<servlet-class>com.bridgelabz.controller.Registration</servlet-class>
 	</servlet>
 	
 	<servlet-mapping>
-		<servlet-name>Display</servlet-name>
+		<servlet-name>Login</servlet-name>
 		<url-pattern>/fx</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
-		<servlet-name>Display</servlet-name>
-		<servlet-class>com.bridgelabz.controller.DisplayDataBase</servlet-class>
+		<servlet-name>Login</servlet-name>
+		<servlet-class>com.bridgelabz.controller.LoginUser</servlet-class>
 	</servlet>
 	
 
