@@ -6,7 +6,7 @@
 	<display-name>Servlet</display-name>
 
 	<welcome-file-list>
-		<welcome-file>form.html</welcome-file>
+		<welcome-file>login.html</welcome-file>
 		<welcome-file>Register.html</welcome-file>
 	</welcome-file-list>
 	

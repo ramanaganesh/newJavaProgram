@@ -26,42 +26,33 @@ public class FirstServlet extends HttpServlet
 	        response.setContentType("text/html");
 	        PrintWriter out = response.getWriter();
 	 
-	        String n = request.getParameter("Name");
-	        String p = request.getParameter("Email Id");
-	        String e = request.getParameter("Password");
-	        Connection con=null;
+	        String n = request.getParameter("userName");
+	        String p = request.getParameter("email-id");
+	        String e = request.getParameter("password");
+	       
+	        
+			Connection con=Connecting.getConnection();	
+				
+	           
 	 
-	        try {
-	            Class.forName("com.mysql.jdbc.Driver");
-	            
-	            con = DriverManager.getConnection(
-	                    "jdbc:mysql://localhost:3306/servlet", "root", "root");
-	        } catch (Exception e2) {
-	            System.out.println(e2);
-	        }
-	 
-	 
-	            PreparedStatement ps;
 				try {
-					ps = con
-					        .prepareStatement("insert into userdetails values(?,?,?)");
+					PreparedStatement ps;
+					
+					ps = con.prepareStatement("insert into userdetails values(?,?,?)");
 					ps.setString(1, n);
 		            ps.setString(2, p);
 		            ps.setString(3, e);
-		           
-		 
-		            int i = ps.executeUpdate();
-		            if (i > 0)
+					int i = ps.executeUpdate();
+					if (i > 0)
 		                out.print("You are successfully registered...");
-		 
+			    	  out.println("<html>Login?<a href='login.html'>login</a></html>");
+
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-	 
 	            
-	        
-	        out.close();
+				out.close();
 	    }
 
 }
