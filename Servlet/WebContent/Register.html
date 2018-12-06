@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Registering user</title>
+<script>
+function validateForm() {
+  var x = document.forms["myForm"]["fname"].value;
+  if (x == "") {
+    alert("Name must be filled out");
+    return false;
+  }
+}
+</script>
 </head>
 <body>
-<form action="fs" method="post">
-Name<input type="text" name="enter name">
-Email Id<input type="text" name="enter email">
-Password<input type="password" name="type password">
-<input type="submit" value="Register"><p>login<a href="login.html">login</a></p>
+
+<form name="myForm" action="/action_page.php" onsubmit="return validateForm()" method="post">
+  Name: <input type="text" name="fname">
+  <input type="submit" value="Submit">
 </form>
 
 </body>

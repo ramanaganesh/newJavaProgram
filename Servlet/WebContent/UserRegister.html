@@ -5,15 +5,28 @@
 <title>Registering user</title>
 </head>
 <body bgcolor="pink">
-	<form action="fs" method="post">
+	<form name="myForm" action="fs"  onsubmit="return validateForm()" method="post">
 		Name<input type="text" name="userName" required autocomplete="off">
 		Email Id<input type="email" name="email-id" required autocomplete="off">
-		 Password<input type="password"	name="password" autocomplete="off">
-		  <br></br>
-		   <input type="submit" value="Register"> 
+		Password<input type="password" name="password" >
+   <br></br>
+		  
+		   <button type="submit" >Register</button> 
 	</form>
 	<p>
 		Login?<a href="login.html">login</a>
 	</p>
+	<script>
+function validateForm()
+{
+	var x=document.forms["myForm"]["password"].value;
+	if(x.length<6)
+		{
+			alert("password must be greater than six letter");
+			return false;
+		}
+	else if()
+}
+</script>
 </body>
 </html>

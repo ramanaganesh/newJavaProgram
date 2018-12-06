@@ -43,6 +43,7 @@ public class LoginUser extends HttpServlet
 			if(n.equals(resultset.getString(1)) && p.equals(resultset.getString(3)))
 			{
 				out.write("you are authorized one to access database");
+				Connecting.display(connection,out);
 				flag=1;
 				break;
 			}
