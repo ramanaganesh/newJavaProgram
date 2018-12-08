@@ -25,7 +25,7 @@ public class RegisterPage extends HttpServlet
 		 	String name = request.getParameter("userName");
 	        String emailId = request.getParameter("emailId");
 	        String password = request.getParameter("password");
-	       
+	        String role=request.getParameter("role");
 	        
 			Connection con=Connecting.getConnect();	
 				
@@ -48,10 +48,11 @@ public class RegisterPage extends HttpServlet
 					
 					if(flag==0)
 					{
-						PreparedStatement ps = con.prepareStatement("insert into userdetails values(?,?,?)");
+						PreparedStatement ps = con.prepareStatement("insert into userdetails values(?,?,?,?)");
 						ps.setString(1, name);
 						ps.setString(2, emailId);
 						ps.setString(3, password);
+						ps.setString(4,role);
 						int i = ps.executeUpdate();
 						if (i > 0)
 						{
